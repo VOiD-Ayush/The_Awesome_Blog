@@ -51,7 +51,7 @@ So it needs some special input.
 
 Using ghidra to get the source code
 
-![pwn101.png]({{site.baseurl}}/all_collections/_posts/images/pwn101.png)
+![pwn101.png](/new_blog/all_collections/_posts/images/pwn101.png)
 
 
 
