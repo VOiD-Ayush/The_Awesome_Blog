@@ -51,7 +51,8 @@ So it needs some special input.
 
 Using ghidra to get the source code
 
-<img>
+![pwn101.png]({{site.baseurl}}/all_collections/_posts/images/pwn101.png)
+
 
 
 Here we can clearly see its checking if preset_value is 1337 if its not so we get shell.
@@ -134,7 +135,8 @@ I'm feeling dead, coz you said I need bad food :(
 
 Using ghidra again to decomplie the source code.
 
-<img>
+![pwn102.png]({{site.baseurl}}/all_collections/_posts/images/pwn102.png)
+
 
 This time there are two preset value with value 0xbadf00d and 0xfee1dead we have to rewrite them to 0xc0ff33 and 0xc0d3
 ```bash
@@ -262,7 +264,8 @@ zsh: segmentation fault  ./pwn103.pwn103
 
 Ghidra Analysis give these two important functions
 
-<img1>
+![pwn103_admins_only.png]({{site.baseurl}}/all_collections/_posts/images/pwn103_admins_only.png)
+
 
 <img2>
 
