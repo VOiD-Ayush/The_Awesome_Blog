@@ -649,6 +649,9 @@ Thanks void
 
 Ghidra analysis
 
+![pwn106.png]({{site.baseurl}}/all_collections/_posts/images/pwn106.png)
+
+
 Here we can clearly see that it takes a input from us and then print it back to up ... but here's the twist as the programmer dosen't specify format specifier we can provide our own format specifier to leak values from the stack.
 
 Our exploit
