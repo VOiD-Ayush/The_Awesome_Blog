@@ -267,7 +267,8 @@ Ghidra Analysis give these two important functions
 ![pwn103_admins_only.png]({{site.baseurl}}/all_collections/_posts/images/pwn103_admins_only.png)
 
 
-<img2>
+![pwn103_general.png]({{site.baseurl}}/all_collections/_posts/images/pwn103_general.png)
+
 
 
 ```bash
@@ -435,7 +436,8 @@ test
 
 Again ghidra for analysis
 
-<img>
+![pwn104.png]({{site.baseurl}}/all_collections/_posts/images/pwn104.png)
+
 
 
 ```bash
@@ -575,7 +577,8 @@ checksec pwn105.pwn105
 
 Ghidra analysis
 
-<img>
+![pwn105.png]({{site.baseurl}}/all_collections/_posts/images/pwn105.png)
+
 
 So first it takes two inputs then check if the are +ve or not if they are not it tells you nice try else it will sum both the values and if the sum is less than 0 it pops a shell.
 
