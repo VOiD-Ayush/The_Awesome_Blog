@@ -15,14 +15,17 @@ plugins:
   - jekyll-feed
 
 kramdown:
-  syntax_highlighter: coderay
+  syntax_highlighter: rouge
   syntax_highlighter_opts:   # Rouge Options › https://github.com/jneen/rouge#full-options
+  line_format: '%i'
+  gutter_class: 'rouge-gutter'
+  code_class: 'rouge-code'
     css_class: highlight
-    # default_lang: console
     span:
       line_numbers: false
     block:
       line_numbers: false
+      
 
 
 collections_dir: all_collections
