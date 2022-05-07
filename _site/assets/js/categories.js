@@ -1,4 +1,4 @@
-const categories = { fiction: [{ url: `/new_blog/posts/the-purpose-of-education/`, date: `12 Dec 1948`, title: `The Purpose of Education`},],jekyll: [{ url: `/new_blog/posts/welcome-to-jekyll/`, date: `03 Apr 2022`, title: `Welcome to Jekyll!`},{ url: `/new_blog/posts/jekyll-markdown/`, date: `04 Nov 2021`, title: `Jekyll Markdown`},{ url: `/new_blog/posts/the-purpose-of-education/`, date: `12 Dec 1948`, title: `The Purpose of Education`},],update: [{ url: `/new_blog/posts/welcome-to-jekyll/`, date: `03 Apr 2022`, title: `Welcome to Jekyll!`},], }
+const categories = {  }
 
 window.onload = function () {
   document.querySelectorAll(".category").forEach((category) => {

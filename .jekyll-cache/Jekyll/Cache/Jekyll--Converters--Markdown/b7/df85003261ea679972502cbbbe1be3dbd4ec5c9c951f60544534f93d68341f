@@ -1,0 +1,164 @@
+I"�1<blockquote>
+  <p>VOiD XD</p>
+</blockquote>
+
+<p>This is short writup for <a href="https://tryhackme.com/room/0x41haz">0x41haz</a> (Simple Reversing Challenge) on <a href="https://tryhackme.com">tryhackme</a>
+Go check it out.</p>
+
+<h3 id="binary-0x41haz0x41haz">Binary [0x41haz.0x41haz]</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># first some basic file checks</span>
+file 0x41haz.0x41haz
+0x41haz.0x41haz: ELF 64-bit MSB <span class="k">*</span>unknown <span class="nb">arch </span>0x3e00<span class="k">*</span> <span class="o">(</span>SYSV<span class="o">)</span>
+
+<span class="c"># Simple google search for "MSB *unknown arch 0x3e00* (SYSV)" returns this intresting blog.</span>
+https://pentester.blog/?p<span class="o">=</span>247
+We get to know that 6th byte tells about endianness changing it to 01 makes elf readable.
+
+I used ghex to change 6th byte you can use any hex editor of your choice.
+
+file 0x41haz.0x41haz
+0x41haz.0x41haz: ELF 64-bit LSB pie executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]<span class="o">=</span>6c9f2e85b64d4f12b91136ffb8e4c038f1dc6dcd, <span class="k">for </span>GNU/Linux 3.2.0, stripped
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># running binary with dummy password </span>
+┌──<span class="o">(</span>void㉿kali<span class="o">)</span>-[~/tryhackme/0x41haz]
+└─<span class="nv">$ </span>./0x41haz.0x41haz
+<span class="o">=======================</span>
+Hey , Can You Crackme ?
+<span class="o">=======================</span>
+Its jus a simple binary 
+
+Tell Me the Password :
+dummypass
+Is it correct , I dont think so.
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># decompiling binary using radare2</span>
+
+r2 0x41haz.0x41haz
+
+<span class="o">[</span>0x00001080]&gt; aaa
+<span class="o">[</span>x] Analyze all flags starting with sym. and entry0 <span class="o">(</span>aa<span class="o">)</span>
+<span class="o">[</span>x] Analyze <span class="k">function </span>calls <span class="o">(</span>aac<span class="o">)</span>
+<span class="o">[</span>x] Analyze len bytes of instructions <span class="k">for </span>references <span class="o">(</span>aar<span class="o">)</span>
+<span class="o">[</span>x] Finding and parsing C++ vtables <span class="o">(</span>avrr<span class="o">)</span>
+<span class="o">[</span>x] Type matching analysis <span class="k">for </span>all functions <span class="o">(</span>aaft<span class="o">)</span>
+<span class="o">[</span>x] Propagate noreturn information <span class="o">(</span>aanr<span class="o">)</span>
+<span class="o">[</span>x] Use <span class="nt">-AA</span> or aaaa t
+
+<span class="o">[</span>0x00001165]&gt; pdf @ main
+            <span class="p">;</span> DATA XREF from entry0 @ 0x109d
+/ 219: int main <span class="o">(</span>int argc, char <span class="k">**</span>argv, char <span class="k">**</span>envp<span class="o">)</span><span class="p">;</span>
+|           <span class="p">;</span> var char <span class="k">*</span>s @ rbp-0x40
+|           <span class="p">;</span> var int64_t var_16h @ rbp-0x16
+|           <span class="p">;</span> var int64_t var_eh @ rbp-0xe
+|           <span class="p">;</span> var int64_t var_ah @ rbp-0xa
+|           <span class="p">;</span> var size_t var_8h @ rbp-0x8
+|           <span class="p">;</span> var int64_t var_4h @ rbp-0x4
+|           0x00001165      55             push rbp
+|           0x00001166      4889e5         mov rbp, rsp
+|           0x00001169      4883ec40       sub rsp, 0x40
+|           0x0000116d      48b832404032.  movabs rax, 0x6667243532404032 <span class="p">;</span> <span class="s1">'2@@25$gf'</span>
+|           0x00001177      488945ea       mov qword <span class="o">[</span>var_16h], rax
+|           0x0000117b      c745f2735426.  mov dword <span class="o">[</span>var_eh], 0x40265473 <span class="p">;</span> <span class="s1">'sT&amp;@'</span>
+|           0x00001182      66c745f64c00   mov word <span class="o">[</span>var_ah], 0x4c     <span class="p">;</span> <span class="s1">'L'</span>
+|           0x00001188      488d3d790e00.  lea rdi, str._nHey___Can_You_Crackme___n <span class="p">;</span> 0x2008 <span class="p">;</span> <span class="s2">"=======================</span><span class="se">\n</span><span class="s2">Hey , Can You Crackme ?</span><span class="se">\n</span><span class="s2">======================="</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x0000118f      e89cfeffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x00001194      488d3db50e00.  lea rdi, str.Its_jus_a_simple_binary__n <span class="p">;</span> 0x2050 <span class="p">;</span> <span class="s2">"It's jus a simple binary </span><span class="se">\n</span><span class="s2">"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x0000119b      e890feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011a0      488d3dc40e00.  lea rdi, str.Tell_Me_the_Password_: <span class="p">;</span> 0x206b <span class="p">;</span> <span class="s2">"Tell Me the Password :"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x000011a7      e884feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011ac      488d45c0       lea rax, <span class="o">[</span>s]
+|           0x000011b0      4889c7         mov rdi, rax                <span class="p">;</span> char <span class="k">*</span>s
+|           0x000011b3      b800000000     mov eax, 0
+|           0x000011b8      e893feffff     call sym.imp.gets           <span class="p">;</span> char <span class="k">*</span>gets<span class="o">(</span>char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011bd      488d45c0       lea rax, <span class="o">[</span>s]
+|           0x000011c1      4889c7         mov rdi, rax                <span class="p">;</span> const char <span class="k">*</span>s
+|           0x000011c4      e877feffff     call sym.imp.strlen         <span class="p">;</span> size_t strlen<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011c9      8945f8         mov dword <span class="o">[</span>var_8h], eax
+|           0x000011cc      837df80d       cmp dword <span class="o">[</span>var_8h], 0xd
+|       ,<span class="o">=</span>&lt; 0x000011d0      7416           je 0x11e8
+|       |   0x000011d2      488d3daf0e00.  lea rdi, str.Is_it_correct___I_dont_think_so. <span class="p">;</span> 0x2088 <span class="p">;</span> <span class="s2">"Is it correct , I don't think so."</span> <span class="p">;</span> const char <span class="k">*</span>s
+|       |   0x000011d9      e852feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|       |   0x000011de      bf00000000     mov edi, 0
+|       |   0x000011e3      e878feffff     call sym.imp.exit
+|       |   <span class="p">;</span> CODE XREF from main @ 0x11d0
+|       <span class="sb">`</span>-&gt; 0x000011e8      c745fc000000.  mov dword <span class="o">[</span>var_4h], 0
+|       ,<span class="o">=</span>&lt; 0x000011ef      eb34           jmp 0x1225
+|       |   <span class="p">;</span> CODE XREF from main @ 0x122b
+|      .--&gt; 0x000011f1      8b45fc         mov eax, dword <span class="o">[</span>var_4h]
+|      :|   0x000011f4      4898           cdqe
+|      :|   0x000011f6      0fb65405ea     movzx edx, byte <span class="o">[</span>rbp + rax - 0x16]
+|      :|   0x000011fb      8b45fc         mov eax, dword <span class="o">[</span>var_4h]
+|      :|   0x000011fe      4898           cdqe
+|      :|   0x00001200      0fb64405c0     movzx eax, byte <span class="o">[</span>rbp + rax - 0x40]
+|      :|   0x00001205      38c2           cmp dl, al
+|     ,<span class="o">===</span>&lt; 0x00001207      7506           jne 0x120f
+|     |:|   0x00001209      8345fc01       add dword <span class="o">[</span>var_4h], 1
+|    ,<span class="o">====</span>&lt; 0x0000120d      eb16           jmp 0x1225
+|    <span class="o">||</span>:|   <span class="p">;</span> CODE XREF from main @ 0x1207
+|    |<span class="sb">`</span><span class="nt">---</span><span class="o">&gt;</span> 0x0000120f      488d3d940e00.  lea rdi, str.Nope           <span class="p">;</span> 0x20aa <span class="p">;</span> <span class="s2">"Nope"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|    | :|   0x00001216      e815feffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|    | :|   0x0000121b      bf00000000     mov edi, 0
+|    | :|   0x00001220      e83bfeffff     call sym.imp.exit
+|    | :|   <span class="p">;</span> CODE XREFS from main @ 0x11ef, 0x120d
+|    <span class="sb">`</span><span class="nt">--</span><span class="sb">`</span>-&gt; 0x00001225      8b45fc         mov eax, dword <span class="o">[</span>var_4h]
+|      :    0x00001228      3b45f8         cmp eax, dword <span class="o">[</span>var_8h]
+|      <span class="sb">`</span><span class="o">==</span>&lt; 0x0000122b      7cc4           jl 0x11f1
+|           0x0000122d      488d3d7b0e00.  lea rdi, str.Well_Done___   <span class="p">;</span> 0x20af <span class="p">;</span> <span class="s2">"Well Done !!"</span> <span class="p">;</span> const char <span class="k">*</span>s
+|           0x00001234      e8f7fdffff     call sym.imp.puts           <span class="p">;</span> int puts<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x00001239      b800000000     mov eax, 0
+|           0x0000123e      c9             leave
+<span class="se">\ </span>          0x0000123f      c3             ret
+
+here we have to focus on three lines : 
+
+|           0x000011c4      e877feffff     call sym.imp.strlen         <span class="p">;</span> size_t strlen<span class="o">(</span>const char <span class="k">*</span>s<span class="o">)</span>
+|           0x000011c9      8945f8         mov dword <span class="o">[</span>var_8h], eax
+|           0x000011cc      837df80d       cmp dword <span class="o">[</span>var_8h], 0xd
+|       ,<span class="o">=</span>&lt; 0x000011d0      7416           je 0x11e8
+
+This checks <span class="k">if </span>the string length is equal to 13
+
+<span class="c"># Lets confirm our finding</span>
+
+┌──<span class="o">(</span>void㉿kali<span class="o">)</span>-[~/tryhackme/0x41haz]
+└─<span class="nv">$ </span>./0x41haz.0x41haz
+<span class="o">=======================</span>
+Hey , Can You Crackme ?
+<span class="o">=======================</span>
+Its jus a simple binary 
+
+Tell Me the Password :
+aaaaaaaaaaaaa
+Nope
+
+Further analysing : 
+|           0x00001169      4883ec40       sub rsp, 0x40
+|           0x0000116d      48b832404032.  movabs rax, 0x6667243532404032 <span class="p">;</span> <span class="s1">'2@@25$gf'</span>
+|           0x00001177      488945ea       mov qword <span class="o">[</span>var_16h], rax
+|           0x0000117b      c745f2735426.  mov dword <span class="o">[</span>var_eh], 0x40265473 <span class="p">;</span> <span class="s1">'sT&amp;@'</span>
+|           0x00001182      66c745f64c00   mov word <span class="o">[</span>var_ah], 0x4c     <span class="p">;</span> <span class="s1">'L'</span>
+
+As it is compared at the end string will be : 2@@25<span class="nv">$gfsT</span>&amp;@L
+Note : This was at the start of the main <span class="k">function </span>so it was really easy to find password.
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Confirming out password</span>
+./0x41haz.0x41haz
+<span class="o">=======================</span>
+Hey , Can You Crackme ?
+<span class="o">=======================</span>
+Its jus a simple binary 
+
+Tell Me the Password :
+2@@25<span class="nv">$gfsT</span>&amp;@L
+Well Done <span class="o">!!</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Final flag : THM{Its easy find yourself}</p>
+</blockquote>
+
+<p>Thank you thats all for today’s challange!</p>
+:ET
