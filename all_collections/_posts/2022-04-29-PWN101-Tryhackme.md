@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PWN101
-date: 1948-12-12 10:18:00
+date: 2022-04-29 10:18:00
 categories: [Pwn, Tryhackme]
 ---
 > Void XD
