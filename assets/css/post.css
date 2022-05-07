@@ -180,6 +180,7 @@ main {
 .content div pre,
 .content div pre code {
   overflow-x: auto !important;
+  line-height: 140%;
 }
 
 .content pre {
@@ -189,7 +190,6 @@ main {
 }
 
 .content code {
-  padding: 3px 5px;
   color: var(--white-2);
   white-space: pre;
   background-color: #1c1c1c;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/new_blog/posts/0x41haz-(Tryhackme)/</loc>
+<loc>http://localhost:4000/new_blog/posts/0x41haz-Tryhackme/</loc>
 <lastmod>2022-04-04T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/new_blog/posts/Ollie/</loc>
+<loc>http://localhost:4000/new_blog/posts/Ollie-Tryhackme/</loc>
 <lastmod>2022-04-08T00:00:00+00:00</lastmod>
 </url>
 <url>
@@ -13,7 +13,7 @@
 <lastmod>2022-04-19T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/new_blog/posts/stuxctf/</loc>
+<loc>http://localhost:4000/new_blog/posts/stuxctf-Tryhackme/</loc>
 <lastmod>2022-04-22T00:00:00+00:00</lastmod>
 </url>
 <url>
