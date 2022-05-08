@@ -1,3 +1,9 @@
+---
+layout: post
+title: Tech Supp0rt 1
+date: 2022-04-19 10:18:00
+categories: [Web, Subrion, Tryhackme]
+---
 > VOiD XD
 
 This is short writup for [Tech_Supp0rt: 1](https://tryhackme.com/room/techsupp0rt1) (Hack into the scammer's under-development website to foil their plans.) on [tryhackme](https://tryhackme.com)

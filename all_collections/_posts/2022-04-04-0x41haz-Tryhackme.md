@@ -1,3 +1,9 @@
+---
+layout: post
+title: 0x41haz
+date: 2022-04-04 10:18:00
+categories: [Pwn, Tryhackme]
+---
 > VOiD XD
 
 This is short writup for [0x41haz](https://tryhackme.com/room/0x41haz) (Simple Reversing Challenge) on [tryhackme](https://tryhackme.com)
