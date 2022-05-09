@@ -8,9 +8,8 @@ categories: [Web, Serialization, Tryhackme]
 
 > Target IP : 10.10.41.176
 
-This is short writup for [Debug](https://tryhackme.com/room/debug) (Hack into the scammer's under-development website to foil their plans.) on [Tryhackme](https://tryhackme.com)
+This is short writup for [Debug](https://tryhackme.com/room/debug) (Linux Machine CTF! You'll learn about enumeration, finding hidden password files and how to exploit php deserialization!) on [Tryhackme](https://tryhackme.com)
 Go check it out.
-
 
 ## Rustscan
 
