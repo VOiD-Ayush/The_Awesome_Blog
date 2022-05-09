@@ -1,7 +1,7 @@
 title: The Awesome Blog
 markdown: kramdown
 url: "https://void-ayush.github.io/"
-baseurl: "/new_blog"
+baseurl: "/The_Awesome_Blog"
 
 # for atom feed
 author:
