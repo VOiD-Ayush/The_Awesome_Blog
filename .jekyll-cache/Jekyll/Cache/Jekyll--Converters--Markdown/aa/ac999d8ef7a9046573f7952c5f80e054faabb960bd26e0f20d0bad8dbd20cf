@@ -1,49 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <link rel="apple-touch-icon" sizes="180x180" href="/The_Awesome_Blog/assets/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/The_Awesome_Blog/assets/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/The_Awesome_Blog/assets/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/The_Awesome_Blog/assets/favicon/site.webmanifest">
-  <link rel="mask-icon" href="/The_Awesome_Blog/assets/favicon/safari-pinned-tab.svg" color="#5bbad5"> 
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  
-  <title>The Awesome Blog | PWN101</title>
-  
-  <link rel="stylesheet" href="/The_Awesome_Blog/assets/css/post.css" />
-  <link rel="stylesheet" href="/The_Awesome_Blog/assets/css/syntax.css" />
-  
-  <link rel="stylesheet" href="/The_Awesome_Blog/assets/css/common.css" />
-  <script src="/The_Awesome_Blog/assets/js/categories.js"></script>
-  
-  <script defer src="/The_Awesome_Blog/assets/js/lbox.js"></script>
-  
-</head>
-
-  <body>
-    <main>
-      <header>
-  <a class="site-title" href="/The_Awesome_Blog/">The Awesome Blog</a>
-</header>
-
-      <section class="article">
-        <div class="article-header">
-          <h2 class="article-title">PWN101</h2>
-          <small class="date">29 Apr 2022</small>
-          <div class="categories">
-            
-            <a href="#!" class="category">Pwn</a>
-            
-            <a href="#!" class="category">Tryhackme</a>
-            
-          </div>
-        </div>
-        <div class="content"><blockquote>
+I"°<blockquote>
   <p>Void XD</p>
 </blockquote>
 
@@ -95,7 +50,7 @@ So it needs some special input.
 
 <p>Using ghidra to get the source code</p>
 
-<p><img src="/The_Awesome_Blog/all_collections/images/pwn101/pwn101.png" alt="pwn101.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn101.png" alt="pwn101.png" /></p>
 
 <p>Here we can clearly see its checking if preset_value is 1337 if its not so we get shell.</p>
 
@@ -745,18 +700,4 @@ checksec pwn107.pwn107
 </code></pre></div></div>
 
 <p>Comming soonâ€¦</p>
-</div>
-      </section>
-      <footer>
-  <p>&copy; 2022 - 2022 | The Awesome Blog</p>
-</footer>
-
-    </main>
-    <section id="category-modal-bg"></section>
-<section id="category-modal">
-  <h1 id="category-modal-title"></h1>
-  <section id="category-modal-content"></section>
-</section>
-
-  </body>
-</html>
+:ET

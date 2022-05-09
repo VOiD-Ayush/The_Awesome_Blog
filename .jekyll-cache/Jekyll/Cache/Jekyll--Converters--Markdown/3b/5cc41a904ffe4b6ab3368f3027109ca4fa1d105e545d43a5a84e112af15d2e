@@ -50,7 +50,7 @@ So it needs some special input.
 
 <p>Using ghidra to get the source code</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn101.png" alt="pwn101.png" /></p>
+<p><img src="/The_Awesome_Blog/all_collections/images/pwn101/pwn101.png" alt="pwn101.png" /></p>
 
 <p>Here we can clearly see its checking if preset_value is 1337 if its not so we get shell.</p>
 
@@ -129,7 +129,7 @@ Am I right? <span class="nb">test
 
 <p>Using ghidra again to decomplie the source code.</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn102.png" alt="pwn102.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn102.png" alt="pwn102.png" /></p>
 
 <p>This time there are two preset value with value 0xbadf00d and 0xfee1dead we have to rewrite them to 0xc0ff33 and 0xc0d3</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Using gdb to get the offset <span class="k">for </span>these comparisions
@@ -253,9 +253,9 @@ zsh: segmentation fault  ./pwn103.pwn103
 
 <p>Ghidra Analysis give these two important functions</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn103_admins_only.png" alt="pwn103_admins_only.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn103_admins_only.png" alt="pwn103_admins_only.png" /></p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn103_general.png" alt="pwn103_general.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn103_general.png" alt="pwn103_general.png" /></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># important function</span>
 
@@ -417,7 +417,7 @@ test
 
 <p>Again ghidra for analysis</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn104.png" alt="pwn104.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn104.png" alt="pwn104.png" /></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># finding the rip offset</span>
 
@@ -551,7 +551,7 @@ checksec pwn105.pwn105
 
 <p>Ghidra analysis</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn105.png" alt="pwn105.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn105.png" alt="pwn105.png" /></p>
 
 <p>So first it takes two inputs then check if the are +ve or not if they are not it tells you nice try else it will sum both the values and if the sum is less than 0 it pops a shell.</p>
 
@@ -620,7 +620,7 @@ Thanks void
 
 <p>Ghidra analysis</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn106.png" alt="pwn106.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn106.png" alt="pwn106.png" /></p>
 
 <p>Here we can clearly see that it takes a input from us and then print it back to up … but here’s the twist as the programmer dosen’t specify format specifier we can provide our own format specifier to leak values from the stack.</p>
 

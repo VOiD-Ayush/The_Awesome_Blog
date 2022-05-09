@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/new_blog/posts/0x41haz-Tryhackme/</loc>
+<loc>http://localhost:4000/The_Awesome_Blog/posts/0x41haz-Tryhackme/</loc>
 <lastmod>2022-04-04T10:18:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/new_blog/posts/Ollie-Tryhackme/</loc>
+<loc>http://localhost:4000/The_Awesome_Blog/posts/Ollie-Tryhackme/</loc>
 <lastmod>2022-04-08T10:18:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/new_blog/posts/Tech_Supp0rt-1-Tryhackme/</loc>
+<loc>http://localhost:4000/The_Awesome_Blog/posts/Tech_Supp0rt-1-Tryhackme/</loc>
 <lastmod>2022-04-19T10:18:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/new_blog/posts/stuxctf-Tryhackme/</loc>
+<loc>http://localhost:4000/The_Awesome_Blog/posts/stuxctf-Tryhackme/</loc>
 <lastmod>2022-04-19T10:18:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/new_blog/posts/PWN101-Tryhackme/</loc>
+<loc>http://localhost:4000/The_Awesome_Blog/posts/PWN101-Tryhackme/</loc>
 <lastmod>2022-04-29T10:18:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/new_blog/</loc>
+<loc>http://localhost:4000/The_Awesome_Blog/posts/Debug-Tryhackme/</loc>
+<lastmod>2022-05-06T10:18:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/The_Awesome_Blog/</loc>
 </url>
 </urlset>
