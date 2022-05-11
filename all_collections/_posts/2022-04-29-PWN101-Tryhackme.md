@@ -60,7 +60,6 @@ Using ghidra to get the source code
 ![pwn101.png]({{site.baseurl}}/all_collections/images/pwn101/pwn101.png)
 
 
-
 Here we can clearly see its checking if preset_value is 1337 if its not so we get shell.
 
 So the objective is to rewrite preset_value to something other than 1337
@@ -141,7 +140,7 @@ I'm feeling dead, coz you said I need bad food :(
 
 Using ghidra again to decomplie the source code.
 
-![pwn102.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn102.png)
+![pwn102.png]({{site.baseurl}}/all_collections/images/pwn101/pwn102.png)
 
 
 This time there are two preset value with value 0xbadf00d and 0xfee1dead we have to rewrite them to 0xc0ff33 and 0xc0d3
@@ -270,10 +269,10 @@ zsh: segmentation fault  ./pwn103.pwn103
 
 Ghidra Analysis give these two important functions
 
-![pwn103_admins_only.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn103_admins_only.png)
+![pwn103_admins_only.png]({{site.baseurl}}/all_collections/images/pwn101/pwn103_admins_only.png)
 
 
-![pwn103_general.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn103_general.png)
+![pwn103_general.png]({{site.baseurl}}/all_collections/images/pwn101/pwn103_general.png)
 
 
 
@@ -442,7 +441,7 @@ test
 
 Again ghidra for analysis
 
-![pwn104.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn104.png)
+![pwn104.png]({{site.baseurl}}/all_collections/images/pwn101/pwn104.png)
 
 
 
@@ -583,7 +582,7 @@ checksec pwn105.pwn105
 
 Ghidra analysis
 
-![pwn105.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn105.png)
+![pwn105.png]({{site.baseurl}}/all_collections/images/pwn101/pwn105.png)
 
 
 So first it takes two inputs then check if the are +ve or not if they are not it tells you nice try else it will sum both the values and if the sum is less than 0 it pops a shell.
@@ -655,7 +654,7 @@ Thanks void
 
 Ghidra analysis
 
-![pwn106.png](https://raw.githubusercontent.com/VOiD-Ayush/The_Awesome_Blog/main/all_collections/_posts/images/pwn101/pwn106.png)
+![pwn106.png]({{site.baseurl}}/all_collections/images/pwn101/pwn106.png)
 
 
 Here we can clearly see that it takes a input from us and then print it back to up ... but here's the twist as the programmer dosen't specify format specifier we can provide our own format specifier to leak values from the stack.
