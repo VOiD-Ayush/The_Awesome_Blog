@@ -39,6 +39,7 @@ Windows systems mainly have two kinds of users. Depending on their access levels
 Any user with administrative privileges will be part of the Administrators group. On the other hand, standard users are part of the Users group.
 
 In addition to that, you will usually hear about some special built-in accounts used by the operating system in the context of privilege escalation:
+
 | User | Info |
 |-----|-----|
 | SYSTEM / LocalSystem | An account used by the operating system to perform internal tasks. It has full access to all files and resources available on the host with even higher privileges than administrators. |
