@@ -191,8 +191,8 @@ main {
 
 .content code {
   color: var(--white-2);
-  white-space: pre;
   background-color: #1c1c1c;
+  overflow-x: auto !important;
 }
 
 /* lbox */
