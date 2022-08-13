@@ -8,7 +8,7 @@ categories: [Web, Tryhackme, Enumeration]
 > VOiD XD
 
 
-Hey everyone,These are notes from the [Hacker Vs Hacker Room](https://tryhackme.com/room/hackervshacker) (omeone has compromised this server already! Can you get in and evade their countermeasures?.) on [tryhackme](https://tryhackme.com)
+Hey everyone,This is short writup for an easy room [Hacker Vs Hacker Room](https://tryhackme.com/room/hackervshacker) (Someone has compromised this server already! Can you get in and evade their countermeasures?) on [Tryhackme](https://tryhackme.com)
 Go check it out.
 
 
