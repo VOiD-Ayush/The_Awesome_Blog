@@ -67,7 +67,7 @@ Scrolling down we get a CV upload functionality.
 
 Trying to upload a test pdf.
 We have :
-![hvh3.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh3.png)
+![hvh1.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh3.png)
 
 Looks like the hacker already hacked the page and commented the upload functionality.
 lets breakdown the code
@@ -134,20 +134,23 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 2022/08/13 19:36:25 Finished
 ===============================================================
 ```
-Volla! we got it : /shell.php
-![hvh4.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh4.png)
+Volla! we got it : /shell.pdf.php
+![hvh2.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh2.png)
 
 Trying to get a reverse shell
-![hvh5.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh4.png)
+![hvh3.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh3.png)
 
-![hvh6.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh6.png)
+![hvh4.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh4.png)
 
 
 So we are getting kicked out.
 Further enumeration using webshell.
 
-![hvh7.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh7.png)
+![hvh5.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh5.png)
 
+![hvh6.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh6.png)
+
+![hvh7.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh7.png)
 
 ```bash
 ┌──(void㉿kali)-[~/Tryhackme/Hacker_Vs_Hacker]
