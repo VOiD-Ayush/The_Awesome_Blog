@@ -67,7 +67,7 @@ Scrolling down we get a CV upload functionality.
 
 Trying to upload a test pdf.
 We have :
-![hvh1.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh3.png)
+![hvh1.png]({{site.baseurl}}/all_collections/images/hacker_vs_hacker/hvh1.png)
 
 Looks like the hacker already hacked the page and commented the upload functionality.
 lets breakdown the code
